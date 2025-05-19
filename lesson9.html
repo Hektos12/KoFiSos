@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filipino sa Iba't Ibang Disiplina</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                margin-left: 0;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .service-card {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .service-card h4 {
+            color: #1a237e;
+            margin-bottom: 0.5rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/Logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>Filipino sa Serbisyong Panlipunan</h1>
+                <div class="week-badge">WEEK 9</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Ang wikang Filipino ay hindi lamang simbolo ng pagkakakilanlan ng bansa kundi isa ring mahalagang kasangkapan sa iba't ibang aspekto ng serbisyong panlipunan. Sa kabila ng pagiging opisyal na wika ng Pilipinas, may mga pagkakataong tila hindi ito nabibigyan ng sapat na pagpapahalaga, lalo na kapag kinukumpara sa mga banyagang wika. Isang halimbawa nito ay ang kabalintunaan na habang ipinagdiriwang natin ang Buwan ng Wika tuwing Agosto, marami sa ating mga kababayan ay mas pinipiling gumamit ng wikang banyaga sa iba't ibang larangan ng lipunan.</p>
+                </div>
+
+                <h2>Filipino sa Pampublikong Serbisyo</h2>
+                <div class="service-card">
+                    <h4>Serbisyong Pangkalusugan</h4>
+                    <p>Sa larangan ng pampublikong serbisyo, mahalagang maunawaan ang pangangailangan ng paggamit ng Filipino upang mas maging epektibo ang komunikasyon sa mga mamamayan. Sa isang pananaliksik na isinagawa ni Ranee Rose A. Garatol, binigyang-diin niya ang kahalagahan ng pagsasalin sa wikang Filipino ng mga paalala, alituntunin, panuto, at direksyon sa mga pampublikong ospital. Layunin ng kanyang mungkahi na mas maging accessible at malinaw ang mga mensaheng nais ipabatid ng mga institusyong pangkalusugan sa publiko. Sa pamamagitan ng paggamit ng wikang Filipino, mas nauunawaan ng karaniwang mamamayan ang mahahalagang impormasyon, na maaaring magdulot ng agarang aksyon at kaligtasan.</p>
+                </div>
+
+                <h2>Filipino sa Edukasyon</h2>
+                <div class="service-card">
+                    <h4>Alternatibong Sistema ng Pagkatuto</h4>
+                    <p>Sa sektor ng edukasyon, pinatutunayan ng pananaliksik ni Hermeline Aguilar ang pagiging epektibo ng wikang Filipino bilang midyum ng pagtuturo, partikular sa Alternatibong Sistema ng Pagkatuto (ALS). Ipinakita sa kanyang pag-aaral na sa mga piling learning centers sa National Capital Region (NCR), naging "mabisang-mabisa" ang paggamit ng Filipino sa pagkatuto. Sa limang hibla ng pagkatuto—kabilang ang makabuluhang komunikasyon, kritikal na pag-iisip, at paglalapat sa tunay na buhay—mas madaling nakakaintindi at nakakapaglahad ng opinyon ang mga mag-aaral sa wikang kanilang sariling wika. Lumitaw rin sa konklusyon ng pag-aaral na bukod sa pagiging praktikal, nakatutulong ang Filipino sa paghubog ng tiwala sa sarili at mas malalim na pag-unawa ng mga aralin.</p>
+                </div>
+
+                <h2>Filipino sa Negosyo</h2>
+                <div class="service-card">
+                    <h4>Komunikasyon at Promosyon</h4>
+                    <p>Samantala, sa larangan ng negosyo, tumataas ang epekto ng paggamit ng Filipino sa komunikasyon, promosyon, at pakikipag-ugnayan sa mga mamimili. Nagiging mas epektibo at kapani-paniwala ang mga patalastas kapag ito ay nakasalin o direktang ginawa sa wikang Filipino, sapagkat ito ay agad na nakaaabot sa damdamin ng mamimili. Makikita ito sa mga anunsyo ng mga banyagang produkto na nilalapatan ng wikang Filipino upang mas madaling maunawaan ng mga lokal na mamimili. Dahil dito, mas lumalawak ang abot ng mga produkto at serbisyo sa masa, lalo na sa mga hindi bihasa sa Ingles o ibang wika. Sa ganitong paraan, ang paggamit ng sariling wika sa pangangalakal ay hindi lamang nakatutulong sa komunikasyon kundi nagiging mabisang estratehiya rin sa pag-unlad ng negosyo.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h2>Kabuuang Pagninilay</h2>
+                    <p>Sa kabuuan, ipinapakita ng mga halimbawang ito na ang wikang Filipino ay isang mahalagang sangkap sa epektibong paghahatid ng serbisyo sa publiko, sa edukasyon, at maging sa negosyo. Hindi ito hadlang sa pag-unlad, bagkus ito ay tulay tungo sa mas inklusibong komunikasyon at pagpapalalim ng pambansang identidad. Sa paggamit ng Filipino sa mga larangang ito, naipapamalas natin ang tunay na pagpapahalaga sa ating kultura at pagkakakilanlan bilang mga Pilipino.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Fildis/WEEK 9 FILDIS.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

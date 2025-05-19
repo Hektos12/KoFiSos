@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOMFIL</title>
+    <link rel="stylesheet" href="sidebarmd.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana,sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #eaeaea;
+        }
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            height: 100vh;
+            flex-shrink: 0;
+        }
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7); /* dark overlay */
+            z-index: 0;
+        }
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+            }
+            .main-content {
+                padding: 16px 8px;
+            }
+        }
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+        .module-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+            padding: 24px 20px 20px 20px;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            transition: all 0.3s ease;
+        }
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+            background: #f5f8fa;
+            cursor: pointer;
+        }
+        .module-card h2 {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        .module-card h3 {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+            border-bottom: 2px solid #2980b9;
+            display: inline-block;
+            padding-bottom: 2px;
+            color: #2980b9;
+        }
+        .module-card p {
+            color: #555;
+            font-size: 1rem;
+            margin-top: 6px;
+        }
+        @media (max-width: 600px) {
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .module-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .module-link:focus {
+            outline: 2px solid #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/Logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="index.html"><span>Courses</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h1>Modules</h1>
+            <div class="modules-grid">
+                <a class="module-link" href="komlesson1.html">
+                    <div class="module-card">
+                        <h2>Lesson 1</h2>
+                        <h3>Ang Wika: Pinagmulan, Batayan, at Probisyon sa Saligang Batas</h3>
+                    </div>
+                </a>
+                <a class="module-link" href="komlesson2.html">
+                    <div class="module-card">
+                        <h2>Lesson 2</h2>
+                        <h3>Ang Pagtaguyod ng Wikang Pambansa sa mas mataas na antas ng edukasyon at lagpas pa</h3>
+
+                    </div>
+                </a>
+                <a class="module-link" href="komlesson3.html">
+                    <div class="module-card">
+                        <h2>Lesson 3</h2>
+                        <h3>Komunikasyon</h3>
+                    </div>
+                </a>
+                <a class="module-link" href="komlesson4.html">
+                    <div class="module-card">
+                        <h2>Lesson 4</h2>
+                        <h3>Buod at Pag-uugnay ng Impormasyon</h3>
+                        
+                    </div>
+                </a>
+                <a class="module-link" href="komlesson5.html">
+                    <div class="module-card">
+                        <h2>Lesson 5</h2>
+                        <h3>Mga Gawaing Pangkomunikasyon ng mga Pilipino</h3>
+                        
+                    </div>
+                </a>
+                <a class="module-link" href="komlesson7.html">
+                    <div class="module-card">
+                        <h2>Lesson 7</h2>
+                        <h3>Gawaing Pangkomunikasyon ng mga Pilipino</h3>
+                        
+                    </div>
+                </a>
+                <a class="module-link" href="komlesson8.html">
+                    <div class="module-card">
+                        <h2>Lesson 8</h2>
+                        <h3>Komunikasyong Di-Berbal</h3>
+                        
+                    </div>
+                </a>
+                <a class="module-link" href="komlesson9.html">
+                    <div class="module-card">
+                        <h2>Lesson 9</h2>
+                        <h3>Mga Napapanahon Isyung Lokal at Nasyonal</h3>
+                        
+                    </div>
+                </a>
+                <a class="module-link" href="komlesson10.html">
+                    <div class="module-card">
+                        <h2>Lesson 10</h2>
+                        <h3>Pangkalusugan</h3>
+                        
+                    </div>
+                </a>
+                <a class="module-link" href="komlesson11.html">
+                    <div class="module-card">
+                        <h2>Lesson 11</h2>
+                        <h3>Urbanisasyon</h3>
+                        
+                    </div>
+                </a>
+                <a class="module-link" href="komlesson13.html">
+                    <div class="module-card">
+                        <h2>Lesson 13</h2>
+                        <h3>Mga Napapanahong Isyung Lokal at Nasyonal
+                            Globalisasyon, Kahirapan, Malnutrisyon at Seguridad sa Pagkain</h3>
+                        
+                    </div>
+                </a>
+                <a class="module-link" href="komlesson14.html">
+                    <div class="module-card">
+                        <h2>Lesson 14</h2>
+                        <h3>Mga Tiyak na Sitwasyong Pang-Komunikasyon</h3>
+                        
+                    </div>
+                </a>
+                <a class="module-link" href="komlesson15.html">
+                    <div class="module-card">
+                        <h2>Lesson 15</h2>
+                        <h3>Worksyap</h3>
+                        
+                    </div>
+                </a>
+                <a class="module-link" href="komlesson16.html">
+                    <div class="module-card">
+                        <h2>Lesson 16</h2>
+                        <h3>Pagsasagawa ng Pulong at Komunikasyon</h3>
+                        
+                    </div>
+                </a>
+                <a class="module-link" href="komlesson17.html">
+                    <div class="module-card">
+                        <h2>Lesson 17</h2>
+                        <h3>Mga Tiyak na Sitwasyong Pang-Komunikasyon ng mga Filipino</h3>
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

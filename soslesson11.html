@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 11</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules1.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>MAIKLING KWENTO AT TULA SA PANAHON NG AMERIKANO</h1>
+                <div class="week-badge">WEEK 11</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>"Banaag at Sikat" ni Lope K. Santos</p>
+                </div>
+
+                <h2>BANAAG AT SIKAT</h2>
+                
+                <div class="theory-section">
+                    <p>Hinggil sa mga buhay ng magkaibigang Delfin at Felipe ang nobelang Banaag at Sikat ni Lope K. Santos: Si Delfin ay isang sosyalista, samantalang si Felipe ay isang anarkista.</p>
+                    <p>Bilang sosyalista, naniniwala at hinahangad ni Delfin na mapalaganap ang kaisipang sosyalismo sa lipunan, kung saan ang mga mamamayan ang may higit na karapatan sa lahat ng mga gawaing pangangalakal, mga pag-aari, at mga pagawaing pambansa. Bagaman isang mahirap na nag-aaral ng abogasya at nagtatrabaho bilang manunulat sa isang pahayagan, matindi ang paniniwala ni Delfin na matatamo lamang ang isang lipunang makamaralita sa pamamagitan ng mapayapang pamamaraan, isang pakikibakang hindi nababahiran ng pagdanak ng dugo.</p>
+                    <p>Si Felipe naman - na may adhikaing anarkismo - ay naniniwala sa marahas na pagbuwag sa mga namamayaning kapangyarihan at kalupitan ng mga mayayamang may-lupa. Ibig niyang pawiin ang mga abusadong maykapangyarihan na naghahari sa lipunan. Bagaman anak ng isang mayamang pinuno ng isang bayan, kinamumuhian ni Felipe ang mga gawi at karahasan ng kaniyang ama.</p>
+                </div>
+
+                <h2>BALANGKAS NG PAGSUSURI NG NOBELA</h2>
+
+                <div class="theory-section">
+                    <h4>I. BALANGKAS NG NOBELA</h4>
+                    <p>a. PAMAGAT: Banaag at Sikat</p>
+                    <p>b. MAY-AKDA: Lope K Santos</p>
+                    <p>Siya ay isang tanyag na manunulat sa wikang Tagalog noong kaniyang kapanahunan, sa simula ng ika-1900 dantaon. Bukod sa pagiging manunulat, isa rin siyang abogado, kritiko, lider obrero, at itinuturing na "Ama ng Pambansang Wika at Balarila" ng Pilipinas.</p>
+                    <p>c. TAGPUAN: Sa Batis ng Antipolo at Maynila</p>
+                    <p>d. KAILAN: Mayo - Hunyo 1904</p>
+                    <p>e. MGA TAUHAN:</p>
+                    <ul>
+                        <li>Don Filemon - mayaman at kasosyo ni Don Ramon sa negosyo</li>
+                        <li>Don Ramon - mayaman, ninong sa kumpil ni Felipe</li>
+                        <li>Meni - anak ni Don Ramon at umiibig kay Delfin</li>
+                        <li>Talia - anak ni Don Ramon</li>
+                        <li>Isiang - Anak ni Loleng</li>
+                        <li>Turing Madlanglayon - Kaibigan ni Talia</li>
+                        <li>Delfin - umiibig kay Meni at isang manunulat</li>
+                        <li>Felipe - kaibigan ni Delfin at may prinsipyong pagkakapantay-pantay</li>
+                    </ul>
+                </div>
+
+                <h2>MGA SULIRANIN</h2>
+
+                <div class="theory-section">
+                    <p>Sa bahagi ng unang kabanata, ang mga umusbong na suliranin ay ang pagiging mapang-angkin nina Don Ramon at Felimon sa Batis. At ang pagiging selosa ni Meni kung kaya't nais malaman ni Delfin ang tunay na estado nila ni Meni.</p>
+                </div>
+
+                <h2>MGA PANGYAYARI</h2>
+
+                <div class="theory-section">
+                    <p>Sa unang kabanata, matutunghayan ang pagkaganid ng mga Don sa ibang mahihirap at ang pangmamaliit nila. Sa usaping pag-ibig ng kanilang mga anak, kailangang kauri rin nila.</p>
+                </div>
+
+                <h2>KINALABASAN</h2>
+
+                <div class="theory-section">
+                    <p>Palihim ang pagpapalitan ng matatamis na salita nina Meni at Delfin dahil sa kahigitan ng ama ni Meni na si Don Ramon.</p>
+                </div>
+
+                <h2>II. PAGPAPAHALAGA SA TAUHAN</h2>
+
+                <div class="theory-section">
+                    <p>Ang pagpupursige at pagiging tapat ni Delfin, ang dahilan kung bakit iniibig din ito ni Meni. Hindi sila nagpahadlang upang hindi matuloy ang pag-iibigan nila.</p>
+                </div>
+
+                <h2>III. PAGPAPAHALAGA SA KATAYUAN SA BUHAY</h2>
+
+                <div class="theory-section">
+                    <p>Mapapansin sa nobelang ito ang isyu ng pang-aapi ng mayaman sa mahirap. Ipinaglaban ng mahihirap ang kanilang karapatan na hindi lamang ang mayayaman ang may karapatang magtamasa ng kalikasan na likha na Diyos kundi maging sila. Ipinakita ang pagpapahalaga sa tao, na kahit mayroong iba't ibang estado ang sa lipunan, dapat manaig ang respeto sa kapwa.</p>
+                </div>
+
+                <h2>IV. PAGPAPAHALAGA SA MAGAGANDANG KAISIPAN</h2>
+
+                <div class="theory-section">
+                    <p>Bigyan ng respeto ang kapwa at ipadama ang pagmamahal. Sapagkat kung minamahal at nirerespeto muna natin ang ating sarili, gayundin ang gagawin natin sa ating kapwa. Walang magiging ganid o maaapi kung alam natin na tayo bilang mga tao ay nananalig sa Diyos.</p>
+                </div>
+
+                <h2>V. TEORYANG PAMPANITIKANG GAMIT NG AKDA</h2>
+
+                <div class="theory-section">
+                    <p>Ang angkop na teoryang pampanitikan sa nobelang Banaag at Sikat ay ang Realismo, sapagkat kakikitaan ito ng tunay na nangyayari sa lipunan. Ang mayaman lang ang may kakayahang magpairal ng kapangyarihan at ang mga mahihirap ay ang siyang naaapi. At ipinakita sa bahaging ito ang pakikipaglaban ng karapatan ng bawat indibidwal, lalo na sa mahihirap. Dapat sa isang lipunan, pinapairal ang batas na magiging batayan ng pagkakapantay-pantay ng karapatan ng mga tao.</p>
+                </div>
+
+                <h2>PANGALAWANG AKDA</h2>
+
+                <div class="theory-section">
+                    <h4>Nene at Neneng ni Valeriano Hernandez-Pena</h4>
+                    <p>Si NENA at NENENG ay matalik na magkaibigang dalaga na parang kapatid na ang tratuhan. Ang unang pagsubok sa pagkakaibigan ay nagsimula nang magkaroon ng tinginan sina Nena at ang kilalang babaero't mapaglaro sa damdamin na si Miguel. Sinumbong ni Neneng kay Aling Anday, pinarusahan si Nena, at sa gitna ng paghuhumigpit ng ale, hiningi nito ang kamay ni Miguel sa kasal. Nagkabalikan ang dalawang dalaga nang maipakita ni Neneng kay Nena si Miguel na kasama na si Chayong.</p>
+                    <p>Si CHAYONG ay may dalawang lalaking kinaguguluhan sa buhay - si Miguel na naiipit sa dalawang dalaga, at ang pinsan nitong si Narciso na mas pabor sa kanya ang pamilya ni Chayong, matino't matalino, at saka dati nang minahal ni Chayong. Ang kuwento'y lumalim lalo nang magkatitigan nang iba si Neneng na papunta kay Chayong at si Narciso na paalis, at pagkatapos, nang inilahad ni Miguel kay Chayong ang kanyang tuluyang paglimot kay Nena. Lalo pang lumalim ito nang mamatay ang asawa ni Aling Anday kung kaya't naghiwalayan ang magkaibigan. At sunud-sunuran ang mga pangyayaring naganap na sila ring nagbago ng direksyon ng buhay nilang lahat.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Soslit/WEEK 11 SOSLIT.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #4a6572, #63a4af);
+    color: #fff;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the page fills the viewport height */
+}
+
+header {
+    background-color: #224550;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    font-size: 2em; /* Adjusted font size */
+    margin-bottom: 10px;
+}
+
+section {
+    flex: 1; /* Allow sections to take up available space */
+    padding: 20px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+
+section h2, section h3, section h4, section h5 {
+    color: #fff;
+}
+
+section p {
+    margin-bottom: 1em;
+}
+
+.team-members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    grid-gap: 20px;
+    justify-content: center;
+}
+
+.team-member {
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.team-member img {
+    border-radius: 50%;
+    max-width: 80%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.team-member h3 {
+    font-size: 1em;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.team-member strong {
+    font-size: 0.9em;
+    color: #333;
+}
+
+
+footer {
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .team-members {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+}

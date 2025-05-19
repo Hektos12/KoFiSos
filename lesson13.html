@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAG-UNLAD KAALAMAN</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .skill-card {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #1a237e;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-card h4 {
+            color: #1a237e;
+            margin-top: 0;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/Logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>PAG-UNLAD KAALAMAN</h1>
+                <div class="week-badge">WEEK 13</div>
+            </div>
+
+            
+
+                <div class="skill-card">
+                    <h4>4.1 Maunawaan ang halaga ng pananaliksik</h4>
+                    <h3>MGA BATAYANG KASANAYAN SA PANANALIKSIK</h3>
+                    <p>Kasanayan sa Pagsasalin dahil karamihan ng mga siyentipikong pag-aaral ay naggaling sa mga mauunlad na bansa, isa sa mga nagiging kahingian ay ang pagsasalin ng mga ito sa Filipino upang bahagi ito ng pagpapalakaw ng saliksik sa bansang Pilipinas. Nilagom ni Karen San Diego (2014) sa kaniyang isinasagawang pag-aaral hinggil sa pagsasalin wika na hinggil sa labing-walaong (18) paraan ng pagsasalin ni Peter Newman (1988) mula sa aklat na A textbook of Translation:</p>
+                    <ul>
+                        <li>Adapsyon (Transference) – panghihiram o paglilipat ng mga kultural na salita mula sa Pinagmulang Wika (PM) patungo sa Target na Wika (TW)</li>
+                        <li>Isahang Pagtutumbas (One-to-One Translation) – literal na pagsasalin sa isa-sa-isa.</li>
+                        <li>Saling Hiram (Through Translation) – Katumbas nito ang ginagamit sa pagsasalin ng mga karaniwang kolokasyon.</li>
+                        <li>Naturalisasyon (Naturalization) – may pagkakahawig sa Transference o adapsyon ngunit nakikiaayon muna ang normal na pagbigkas.</li>
+                        <li>Leksikal na Sinonim (Lexical Synonymy) – katumbas na salita kasingkahulugan sa target na wika</li>
+                        <li>Transposisyon (Transposition) – Tinatawag ding Shift. pagkakaroon ng pagbabago sa gramatika ng pinagmulang wika kapag isinalin sa target na wika</li>
+                        <li>Modulasyon (Modulation) – Pagsasalin na may pag-iiba sa punto de bista o pananaw sa pagbibigay-kahulugan.</li>
+                        <li>Kulturan na Katumbas (Cultural Equivalent) – halos wastong salin, ang ang isang kulturang salita PW ay isasalin sa katumbas ding kulturang salita</li>
+                        <li>Gamiting Katumbas (Function Equivalent) – Ibinibigay ang higit na gamitin at tinatanggap na katumbas o kahulugan.</li>
+                        <li>Deskriptibong Panumbas (Descriptive Equivalent) – Pagbibigay ng depinisyong naglalarawan</li>
+                        <li>Kinikilalang Salin (Recognized Translation) – Opisyal at tinatanggap na nakararami na salin ng anumang termino.</li>
+                        <li>Pagdaragdag/Pagpapalawak (Addition/Expansion) – pagdaragdarg ng salita sa istrukturang gramatika upang maging malinaw ang kahulugan</li>
+                        <li>Pagpapaikli/Pagpapaliit (Reduction/Contraction) – paraan sa pagsasalin na pinaiikli</li>
+                        <li>Pagsusuri sa mga Bahagi (Componential Analysis) – naghahati-hati batay sa leksikal na yunit sa mga makabuluhang sangkap o hanay.</li>
+                        <li>Hawig (Paraphrase) – nagpapaliwanag sa kahulugan ng isang hanay, pangungusap o talata</li>
+                        <li>Kompensasyon (Compensation) – ginagamit kapag ang pagkawala ng kahulugan ng isang bahagi ng parirala pangungusap o talata ay nagtutumbasan o napupunan ng ibang bahagi</li>
+                        <li>Pagpapabuti (Improvement) – nagwawasto sa mga gramatikal o tipograpikal</li>
+                        <li>Kuplets (Couplets) – pinagsasama ang paggamit ng dalawa, tatlo o higit pa sa mga pamamaraang nabanggit.</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h4>4.2 Matukoy ang mga mapagkakatiwalaan, at makabuluhang pananaliksik</h4>
+                    <p>Kasanayan sa Paglalagom at Pagpaparapreys. Paglalagom ang tawag kapag inilahad nang payak ang orihinal na materyales. Maiksi ito at gumamit lamang ng sariling pananalita.</p>
+                    
+                    <h5>Mga Maaaring Paghanguan ng Suliranin:</h5>
+                    <ul>
+                        <li>Sarili – nag mayamang karanasan ng tao ay isa nang sapat na hanguan ng maaaring piliing suliranin o paksa.</li>
+                        <li>Pang-araw-araw na Babasahin – Mula sa dyaryo, magasin at iba pang pang-araw-araw na babasahin ay makahahango at makatutulong sa paghagilap sa mga napapanahong isyu o iba't ibang sektor ng lipunan.</li>
+                        <li>Brodkast Midya – pakikinig at panonood ng mga balita at mga programa sa radyo at sa telebisyon na tumatalakay sa mga napapanahong isyu ng lipunan.</li>
+                        <li>Mapagkakatiwalaang Tao – Pagtatanong sa mga taong mapagkakatiwalaan lalo't higit sa larangang kanilang kinabibilangan.</li>
+                        <li>Internet – Hindi na maiaalis sa bawat mag-aaral ang mabilisang pagpindot sa mga search engine kapag may ninanais na hanapin o masagot na paksa.</li>
+                        <li>Laybri – pinakamaraming datos na maaaring pagbatayan ng paggawa ng isang pananaliksik.</li>
+                    </ul>
+
+                    <h5>Mga Dapat Isaalang-Alang sa Pagpili ng Paksa:</h5>
+                    <ul>
+                        <li>Paghahanguan – Kailangan na siguraduhin na mayroong pagkukuhaan ng datos ang mananaliksik</li>
+                        <li>Panahon – Haba na igugul sa paggawa ng Pananaliksik</li>
+                        <li>Pinansyal – Huwag mangarap ng malaking pananaliksik ng hindi kaya ng inyong pinansiyal</li>
+                        <li>Paksa – Ang pananaliksik ay may kinalaman sa inyong Kurso</li>
+                        <li>Pagnanais – Ang paksang pipiliin ay naayos sa kagustuhang gawin.</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>4.3 Maisapraktika at mapaunlad pa ang mga batayang kaalaman sa pananaliksik</h4>
+                    <h4>Karaniwang Format ng Kwantitatibong Pananaliksik sa mga Pamantasan</h5>
+                    
+                    <h4>KABANATA 1</h6>
+                    <ul>
+                        <li>Panimula</li>
+                        <li>Kaligitang Kasaysayan ng Pag-aaral</li>
+                        <li>Batayang Teoretikal</li>
+                        <li>Balangkas Konseptwal</li>
+                        <li>Paglalahad ng Suliranin</li>
+                        <li>Mga Tikay na Suliranin</li>
+                        <li>Hipotesis o Asumpsyon</li>
+                        <li>Kahalagahan ng Pag-aaral</li>
+                        <li>Saklaw at Hangganan ng Pag-aaral</li>
+                        <li>Katuturan ng mga Katawagan</li>
+                    </ul>
+
+                    <h4>KABANATA 2: Mga Kaugnay na Literatura at Pag-aaral</h6>
+                    <ul>
+                        <li>Salik Pantao</li>
+                        <li>Salik Pampapel</li>
+                        <li>Salik Pang-elektroniko</li>
+                    </ul>
+
+                    <h4>KABANATA 3: Disenyo at Paraan ng Pananaliksik</h6>
+                    <ul>
+                        <li>Disenyo ng Pananaliksik</li>
+                        <li>Pamamaraang Ginamit sa Pananaliksik</li>
+                        <li>Teknik sa pagkuha ng Sampol o Kalahok sa Pag-aaral</li>
+                        <li>Instrumentong Ginamit sa Pananaliksik</li>
+                        <li>Paraan sa Pangangalap ng mga Datos</li>
+                        <li>Kompyutasyong Istatistika</li>
+                    </ul>
+
+                    <h4>KABANATA 4: Paglalahad, Pagsusuri at Interpretasyon ng mga Datos</h6>
+                    <ul>
+                        <li>Paglalahad ng mga Datos</li>
+                        <li>Pagsusuri ng Datos</li>
+                        <li>Interpretasyon ng mga Datos</li>
+                    </ul>
+
+                    <h4>KABANATA 5: Lagom ng mga Natuklasan, Konklusyon at Rekomendasyon</h6>
+                    <ul>
+                        <li>Lagom ng mga Natuklasan</li>
+                        <li>Mga Konklusyon</li>
+                        <li>Mga Rekomendasyon</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Fildis/WEEK 13 FILDIS.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

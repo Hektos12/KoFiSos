@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules1.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>Panitikan Hinggil sa Kahirapan</h1>
+                <div class="week-badge">WEEK 3</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Isang malalim na pagtingin sa kahirapan at ang mga epekto nito sa lipunan.</p>
+                </div>
+
+                <h2>Itaboy ang Kahirapan, Hindi ang Mahihirap</h2>
+                
+                <div class="theory-section">
+                    <h4>Gobernador at Hari</h4>
+                    <ul>
+                        <li>Itinayo ang pader para itago ang mahihirap sa mata ng hari.</li>
+                        <li>Itaboy ang mahihirap sa malalayong lugar, hindi ang kahirapan.</li>
+                        <li>Hindi dapat itaboy ang mahihirap, kundi ang nagpapahirap.</li>
+                    </ul>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Demolisyon at Kahirapan</h4>
+                    <ul>
+                        <li>Pinapatalsik ang mahihirap dahil sa kanilang kalagayan.</li>
+                        <li>Hindi pinapansin ang epekto sa hanapbuhay ng mga mahihirap.</li>
+                        <li>Para labanan ang kahirapan, itaboy ang nagpapahirap, hindi ang mahihirap.</li>
+                    </ul>
+                </div>
+
+                <h2>Kwento ng Hari at Gobernador</h2>
+
+                <div class="theory-section">
+                    <h4>Pagbisita ng Hari</h4>
+                    <ul>
+                        <li>Napansin ang mahabang pader na itinayo ng gobernador.</li>
+                        <li>Hindi naibigay ang gantimpala dahil sa pagtatago ng mahihirap.</li>
+                        <li>Dapat resolbahin ng gobyerno ang kahirapan, hindi itago ito.</li>
+                    </ul>
+                </div>
+
+                <h2>Maikling Kwento ni Efren Abueg: Mabangis na Lungsod</h2>
+
+                <div class="theory-section">
+                    <h4>Panimula</h4>
+                    <ul>
+                        <li>Malupit na liwanag ng ilaw-dagitab sa gitna ng dilim.</li>
+                        <li>Isang batang pulubi na naghahanap ng tulong sa simbahan.</li>
+                        <li>Sentro ng pag-asa at buhay ni Adong sa gitna ng kahirapan.</li>
+                    </ul>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Pakikibaka ni Adong</h4>
+                    <ul>
+                        <li>Paghingi ng Palimos</li>
+                        <li>Maraming tao ang nagwawalang-bahala at may pagkasuklam.</li>
+                        <li>Isang malupit na lalaki na nagpapahirap kay Adong.</li>
+                    </ul>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Paglayo at Paglaya ni Adong</h4>
+                    <ul>
+                        <li>Pag-asa sa Kinabukasan</li>
+                        <li>Ang kanyang paglaya ay simbolo ng pag-asa at paghihimagsik.</li>
+                        <li>Paglayo kay Bruno</li>
+                        <li>Pinipilit niyang labanan ang gutom at takot araw-araw.</li>
+                        <li>Pinilit ni Adong na tumakas sa kamay ng malupit na lalaki.</li>
+                    </ul>
+                </div>
+
+                <h2>Aral ng Panitikan sa Kahirapan</h2>
+
+                <div class="theory-section">
+                    <h4>Hindi Itaboy ang Mahihirap</h4>
+                    <p>Sila ay biktima ng sistemang nagpapahirap sa kanila.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Gobernong Responsableng Lutasin</h4>
+                    <p>Dapat tugunan ang ugat ng kahirapan, hindi itago ito.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Pag-asa at Rebolusyon</h4>
+                    <p>Ang tunay na laban ay sa mga nagpapahirap sa mahihirap.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Soslit/MODULE 3 SOSLIT.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 10</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules2.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>PANGKALUSUGAN</h1>
+                <div class="week-badge">WEEK 10</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Sa kasalukuyang panahon, mahalaga ang kalusugan ng bawat isa. Kapag tayo ay nagkasakit, hindi lamang ang ating katawan ang apektado, kundi pati na rin ang ating kabuhayan at ang kabuuang kalagayan ng ating pamilya. Kung ang padre de pamilya ay magkasakit, makakaapekto ito sa buong pamilya, dahil mawawalan ng kita at hindi matutustusan ang mga pangangailangan sa bahay tulad ng pagkain, edukasyon, at iba pa. Kaya't napakahalaga na pangalagaan ang ating kalusugan.</p>
+                </div>
+
+                <div class="theory-section">
+                    <p>Sa pamamahala ng kalusugan, mayroong ahensya ng gobyerno na namamahala rito, ang Department of Health (DOH), na may layunin na magpatupad ng mga proyekto para mapabuti ang kalusugan ng mga mamamayan. Ngunit, may mga pagkakataong ang mga proyekto ng DOH ay nagiging sanhi ng mga isyu at kontrobersiya.</p>
+                </div>
+
+                <h2>Dengvaxia Isyu</h2>
+
+                <div class="theory-section">
+                    <p>Ang Dengvaxia ay isang bakuna na ipinakilala ng DOH laban sa dengue na ini-import mula sa Sanofi Pharmaceutical Company sa Italy. Ang layunin ng bakuna ay maiwasan ang paglaganap ng dengue, ngunit ang naging problema ay ang epekto nito sa mga hindi pa nagkakaroon ng dengue.</p>
+                    <p>Ayon kay Dave Arthur Robredo, isang biologist, napag-alaman na kung ang isang tao ay hindi pa nagkakaroon ng dengue at siya ay naturukan ng Dengvaxia, maaari itong magdulot ng mas malalang sintomas ng dengue. Isang malungkot na pangyayari ang naganap nang may mga batang namatay na naturukan ng bakunang ito, kaya't isinisi ito ng kanilang pamilya sa DOH.</p>
+                </div>
+
+                <h2>HIV/AIDS</h2>
+
+                <div class="theory-section">
+                    <p>HIV (Human Immunodeficiency Virus) at AIDS (Acquired Immunodeficiency Syndrome) ay dalawang magkaibang kondisyon, bagaman magkaugnay. Ang HIV ay isang virus na nakakasira sa immune system ng tao, at ang AIDS naman ay ang huling yugto ng HIV infection.</p>
+                    <p>Ayon kay Dave Arthur Robredo, ang mga taong may HIV o AIDS ay hindi namamatay dahil sa virus mismo, kundi dahil sa mga komplikasyon mula sa ibang mga sakit na dulot ng kahinaan ng immune system.</p>
+
+                    <h4>Saan Nakukuha ang HIV?</h4>
+                    <ul>
+                        <li>Pakikipagtalik - Ang hindi ligtas na pakikipagtalik (hindi gumagamit ng condom) o group sex ay isa sa mga pangunahing sanhi ng pagkalat ng HIV.</li>
+                        <li>Pagbubuntis at Pagpapasuso - Kung ang ina ay positibo sa HIV, may posibilidad na maipasa ito sa kanyang anak sa pamamagitan ng pagbubuntis o pagpapasuso.</li>
+                        <li>Paglipat ng Dugo - Ang blood transfusion na gumagamit ng kontaminadong dugo ay maaari ring magdala ng HIV.</li>
+                    </ul>
+
+                    <h4>Kasalukuyang Kalagayan ng HIV sa Pilipinas:</h4>
+                    <p>Ayon kay Robredo, patuloy ang pagtaas ng bilang ng mga taong may HIV sa bansa, at isang malaking problema ang kakulangan ng kaalaman at edukasyon hinggil dito. Madalas ay hindi sapat ang impormasyon kung paano makakaiwas sa HIV, kaya't marami pa rin ang nahahawa.</p>
+                </div>
+
+                <h2>Transportasyon</h2>
+
+                <div class="theory-section">
+                    <p>Ang jeepney ay isang pangunahing uri ng pampasaherong sasakyan sa Pilipinas. Ginagamit ito ng marami sa araw-araw na pagbiyahe patungong trabaho, paaralan, at iba pang mga destinasyon. Bukod sa pagiging isang tanyag na paraan ng transportasyon, ang jeepney ay naging isang simbolo ng kultura at kasaysayan ng Pilipinas, na kilala sa makulay at magarbong disenyo nito.</p>
+
+                    <h4>Jeepney Modernization Program</h4>
+                    <p>Isa sa mga isyu sa transportasyon ay ang Jeepney Modernization Program, na layuning palitan ang mga jeepney na mahigit 15 taon na ang gamit ng mga makabagong electronic jeepneys. Bagaman maganda ang layunin nito na pabutihin ang kalidad ng transportasyon at mabawasan ang polusyon, marami ang tumutol sa proyekto.</p>
+                    <p>Ang mga operator at franchisers ay nag-aalala sa kanilang kabuhayan dahil sa mataas na halaga ng pagpapalit ng mga lumang jeepney sa mga bagong unit na may mas modernong teknolohiya. Kung matutuloy ang proyekto, makakaapekto ito sa mga manggagawa at may-ari ng mga lumang jeepney na hindi kayang mag-invest sa mga bagong unit.</p>
+                </div>
+
+                <h2>Edukasyon</h2>
+
+                <div class="theory-section">
+                    <p>Ang edukasyon ay isang mahalagang yaman ng bawat tao, na hindi maaaring kunin ng kahit sino. Ito ay isang pamana ng mga magulang sa kanilang mga anak at isang susi upang makamit ang magandang kinabukasan. Sa kabila ng lahat ng pagsubok sa buhay, ginagawa ng mga magulang ang lahat ng makakaya upang matustusan ang edukasyon ng kanilang mga anak.</p>
+
+                    <h4>K-12 Curriculum (R.A. No. 10533)</h4>
+                    <p>Ang Pilipinas ay isa sa mga tatlong bansa na hindi pa sumusunod sa K-12 curriculum, kasama ang Angola at Djibouti. Ang K-12 ay naglalayong matulungan ang mga mag-aaral na maghanda sa mga hamon sa ibang bansa, dahil sa globalisasyon at ang pangangailangan ng mas mataas na kasanayan sa mga labor market.</p>
+                    <p>Ang K-12 Curriculum ay isang reforma sa sistema ng edukasyon sa Pilipinas na layong magdagdag ng dalawang taon sa sekondarya. Ang layunin ng K-12 na programa ay magbigay ng mas komprehensibong paghahanda sa mga mag-aaral para sa kanilang susunod na hakbang sa buhay, maging sa trabaho man o sa pag-aaral sa kolehiyo. Mula sa dating 10 taon ng edukasyon, gagawin itong 12 taon.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Komfil/Komfil Module 10.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

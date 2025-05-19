@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules1.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>PANITIKAN HINGGIL SA ISYUNG PANGMANGGAGAWA, PANGMAGSASAKA, AT PAMBANSA</h1>
+                <div class="week-badge">WEEK 5</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Ito ay ang mga balitang nangyayari sa loob at labas ng bansa, ito ay isang paksa na ating napapakinggan o nakikita sa ating radio, telibisyon, internet, dyaryo, pamplets at iba pa.</p>
+                </div>
+
+                <h2>Isyung Pangmagsasaka</h2>
+                
+                <div class="theory-section">
+                    <p>Ang isyung magsasaka ay patungkol sa mahahalagang pangyayari sa ating mga magsasaka, partikular sa kanilang mga produkto mayroong malaking epekto sa ekonomiya ng ating bansa. Nasasakop din ng isyung ito ang mga produkto na inilalabas at binebenta sa ibang bansa.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Mga Panitikan Ukol sa Isyung Magsasaka</h4>
+                    <p>Ilan sa mga panitikan naisagawa ukol sa mga isyong magsasaka.</p>
+                </div>
+
+                <h2>Isyung Panlipunan o Pangbansa</h2>
+
+                <div class="theory-section">
+                    <p>Ang isyung panlipunan o pangbansa ay mga mahahalagang pangyayari o kaganapan sa ng bansa na may malawakang epekto sa iba't ibang sector ng lipunan na kinabibilangan ng pamilya, simbahan, pamahalaan, paaralan at ekonomiya. Ang mga halimbawa nito ay ang pag-aagawan ng Pilipinas at China sa pag-aari ng West Philippine Sea, Mass Transportation, traffic at iba pa.</p>
+                </div>
+
+                <h2>COVID-19 Crisis</h2>
+
+                <div class="theory-section">
+                    <h4>Ano ang Coronavirus?</h4>
+                    <p>Sa kasalukuyan tayo ay humaharap sa matinding krisis dala ng nakakahawang sakit na "CORONA VIRUS". Ang Coronaviruses ay isang malaking pamilya ng mga virus na maaaring magdulot ng sakit mula sa karaniwang sipon hanggang sa mas malubhang sakit tulad ng Middle East Respiratory Syndrome (MERS-CoV) at Severe Acute Respiratory Syndrome (SARS-CoV).</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Paano ito Kumakalat?</h4>
+                    <p>Ang mga coronavirus ay naisip na kumalat sa hangin sa pagubo/pagbahing at malapit na personal na pakikipag-ugnay, o sa paghawak ng mga kontaminadong bagay o ibabaw at pagkatapos ay sa paghawak ng bibig, ilong, o mata.</p>
+                </div>
+
+                <h2>TULA: ALAY SA MGA FRONTLINERS SA COVID-19</h2>
+                <h3>Ni Malou Tiangco (Ika-6 ng Abril, 2020)</h3>
+
+                <div class="theory-section">
+                    <p>Sa inyo aming alay<br>
+                    Kayong nagliligtas ng buhay<br>
+                    Meron din kayong pangamba<br>
+                    Bagsik na dala ni Corona</p>
+
+                    <p>Kayong humaharap sa nakaambang panganib<br>
+                    Nanaig ang katapatan sa sinumpaang katungkulan<br>
+                    Kahit nasa bingit ng kamatayan<br>
+                    Usal na dasal makaligtas sana.</p>
+
+                    <p>Gapiin ang kamandag ni Corona<br>
+                    Huwag magwagi bagsik ni Corona<br>
+                    Naririnig namin usal ninyong hiling<br>
+                    Taimtim na panalangin</p>
+
+                    <p>Matapos na sana, salot ni Corona<br>
+                    Matigil na ang mga palahaw ng mga naulila<br>
+                    Matigil na ang salot na dulot<br>
+                    Matigil na bumabalot na lungkot!</p>
+                </div>
+
+                <h2>BUOD NG IBONG MANDARANGGIT (1969)</h2>
+                <h3>Ni Amando V. Hernandez</h3>
+
+                <div class="theory-section">
+                    <h4>Mga Pangunahing Tauhan</h4>
+                    <ul>
+                        <li>Andoy/Mando Plaridel - ang pangunahing tauhan</li>
+                        <li>Don Segundo Montero - dating amo ni Andoy</li>
+                        <li>Tata Matias - nagturo kay Andoy sa panig ng dagat</li>
+                        <li>Dolly Montero - anak nina Donya Julia at Don Segundo</li>
+                        <li>Tata Pastor - dating katiwala ni Don Segundo</li>
+                        <li>Puri - pinsan ni Mando</li>
+                    </ul>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Buod ng Kwento</h4>
+                    <p>Si Andoy ay dating alila sa bahay ni Don Segundo Montero. Matapos ang mga pangyayari sa panahon ng Hapon, siya ay naging si Mando Plaridel at nagtatag ng pahayagang Kampilan. Ang kwento ay sumusunod sa kanyang pakikipagsapalaran, pag-ibig kay Dolly, at ang kanyang paglaban sa mga masasamang pinuno ng pamahalaan.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Mga Mahahalagang Pangyayari</h4>
+                    <ul>
+                        <li>Ang pagtakas ni Andoy at pagsama sa mga gerilya</li>
+                        <li>Ang pagkakatagpo ng kayamanan ni Simoun</li>
+                        <li>Ang pagtatag ng pahayagang Kampilan</li>
+                        <li>Ang pag-ibig nina Mando at Dolly</li>
+                        <li>Ang paglaban sa mga masasamang pinuno ng pamahalaan</li>
+                        <li>Ang pagbibilanggo kay Don Segundo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Soslit/MODULE 5 SOSLIT.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

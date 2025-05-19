@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 8</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules1.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>PANITIKAN SA PANAHONG KASTILA</h1>
+                <div class="week-badge">WEEK 8</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Ang isinaalang-alang na unang pananakop ng mga Kastila sa ating kapuluan ay ang pananatili rito ni Miguel Lopez de Legazpi noong 1565, bilang kauna-unahang Kastilang gobernadorheneral. At dito nagsimula ang panitikan ng mga tao rito.</p>
+                </div>
+
+                <h2>Mga Pagbabagong Naganap sa Buhay ng mga Pilipino</h2>
+                
+                <div class="theory-section">
+                    <ul>
+                        <li>Napalaganap ang relihiyong Katolika Apostolika Romana</li>
+                        <li>Pagpapalawak ng hanapbuhay at nasasakupang lupain</li>
+                        <li>Pagpapalit ng pangalan at pagpapabinyag</li>
+                        <li>Pagbibigay ng apelyidong Kastila sa mga pamilyang Pilipino</li>
+                        <li>Pag-unlad ng kabuhayan at pakikipagkalakalan</li>
+                        <li>Pagbabago sa anyo ng pamamahay at kasangkapan</li>
+                        <li>Pagdiriwang ng mga kapistahan at libangan</li>
+                    </ul>
+                </div>
+
+                <h2>Dalawang Panahon ng Panitikan</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Panitikang Pamaksang Pananampalataya at Kabutihang-asal</li>
+                        <li>Panitikang Rebolusyonaryo at Sedisyoso</li>
+                    </ul>
+                </div>
+
+                <h2>Tatlong Katangian ng Panitikan</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>May sari-saring kaanyuan at pamamaraan</li>
+                        <li>Ang karaniwang paksain ay panrelihiyon</li>
+                        <li>Ang lalong nakararami ay huwad, tulad, o halaw sa anyo, paksa, o tradisyong kastila</li>
+                    </ul>
+                </div>
+
+                <h2>Mga Impluwensya ng Kastila sa Panitikang Filipino</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Pagpapalit ng Alibata sa alpabetong Romano</li>
+                        <li>Pagkakaturo ng Doctrina Cristiana</li>
+                        <li>Paggamit ng wikang Kastila</li>
+                        <li>Pagkakadala ng mga alamat at tradisyong Europeo</li>
+                        <li>Pagkakasinop at pagkakasalin ng makalumang panitikan</li>
+                        <li>Pagkakalathala ng mga aklat na pambalarila</li>
+                        <li>Pagkakaroon ng makarelihiyong himig sa mga lathalain</li>
+                    </ul>
+                </div>
+
+                <h2>Mga Akdang Panrelihiyon</h2>
+
+                <div class="theory-section">
+                    <h4>Doctrina Christiana (1593)</h4>
+                    <p>Kauna-unahang aklat na nalimbag sa Pilipinas, nasusulat sa Tagalog at Kastila. Naglalaman ng mga dasal, sampung utos, pitong sakramento, at iba pa.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Nuestra Senora del Rosario (1602)</h4>
+                    <p>Ikalawang aklat na nalimbag sa Pilipinas. Naglalaman ng mga talambuhay ng mga santo, nobena, at mga tanong at sagot sa relihiyon.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Barlaan at Josaphat (1780)</h4>
+                    <p>Ikatlong aklat na nalimbag sa Pilipinas. Orihinal na nasa wikang Griyego at ipinalalagay na kaunaunahang nobelang nalimbag sa Pilipinas.</p>
+                </div>
+
+                <h2>Mga Dulang Panrelihiyon</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Panunuluyan - Dulang tinatanghal sa lansangan</li>
+                        <li>Flores de Mayo/Dalit - Pag-aalay ng bulaklak sa Birheng Maria</li>
+                        <li>Santa Cruzan - Prusisyon ng paghahanap sa Banal na Krus</li>
+                        <li>Senakulo - Dulang nagsasalaysay ng buhay at kamatayan ni Kristo</li>
+                        <li>Salubong - Pagtatanghal ng pagtatagpo ni Hesus at Maria</li>
+                        <li>Tibag - Pagtatanghal ng paghahanap ni Santa Elena sa krus</li>
+                        <li>Karilyo - Pagpapagalaw ng mga anino ng mga kartong hugis tao</li>
+                    </ul>
+                </div>
+
+                <h2>Mga Kantahing-Bayan</h2>
+
+                <div class="theory-section">
+                    <h4>Mga Halimbawa</h4>
+                    <ul>
+                        <li>Leron-leron Sinta (Tagalog)</li>
+                        <li>Pamulinawen (Iloko)</li>
+                        <li>Dadansoy (Bisaya)</li>
+                        <li>Sarong Banggin (Bikol)</li>
+                        <li>Atin Cu Pung Singsing (Kapampangan)</li>
+                    </ul>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Kahalagahan ng Kantahing Bayang Pilipino</h4>
+                    <p>Ito ay nagpapakilala na ang ating diwang makata ay katutubo sa ating lupain. Ito ay nagpapahayag na tunay na kalinangan ng Pilipino. Ito ay bunga at bulaklak ng matulaing damdaming galling sa puso at kaluluwa ng bayan.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Soslit/WEEK 8 SOSLIT.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filipino Bilang Wika ng Saliksik - Week 3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;    
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .nav-links {
+            list-style: none;
+        }
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px; 
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                margin-left: 0;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/Logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <h1>FILIPINO BILANG WIKA NG SALIKSIK SA IBA'T IBANG LARANG</h1>
+                <div class="week-badge">WEEK 3</div>
+            </div>
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p><strong>I. PANIMULA</strong><br>
+                    -Maisapraktika at mapaunlad pa ang mga batayang kasanayan sa pananaliksik<br>
+                    Halina't ilamin ang kinalaman ng mga salita sa Pananaliksik sa iba't ibang Larang</p>
+                </div>
+                <p><strong>FILIPINO BILANG WIKA NG SALIKSIK SA IBA'T IBANG LARANG</strong><br>
+                Sa pagtalakay sa Filipino bilang wika ng saliksik, hindi maisasantabi ang pagtalakay sa intektwalisasyon ng Filipino. Iniaangat ng bayan ang antas ng wika sa estado nagagamit ito sa intelekwal na usapin at intelektwal na materyales o babasahin.<br><br>
+                Kinikilala ang pananaliksik bilang refleksiyon ng talino at husay ng mananaliksik, matagal nang nakasusulat ng pananaliksik sa Filipino ang mga Pilipino lalo na ang mga nakapagdalubhasa sa Filipino.<br><br>
+                Marami nang mga aklat sa matematika at Agham ang tinangkang isulat sa Filipino. May mga aklat pangmedisina o pangkalusugan ang naisulat sa Filipino.</p>
+                <h2>Pananaliksik sa Agham at Teknolohiya</h2>
+                <p>Marahil kung walag pananaliksik ay atrasado pa rin ang ating pamumuhay sa kasalukuyan. Ang mga kagamitang pantahanan ay mas higit na nagpapadali sa mga gawain ng bawat miyembro ng pamilya.</p>
+                <h2>Pananaliksik sa Negosyo at Industriya</h2>
+                <p>Ang pagpapatupaf ng mga kapasyahan sa isang negosyo ay batay na rin sa resulta ng maingat na pagpaplano at pagsusuri kung aling pananaliksik ang higit na angkop sa lalong ikaangat ng negosyo.</p>
+                <h2>Pananaliksik sa Edukasyon</h2>
+                <p>Higit sa lahat mahalaga ang pananaliksik sa larangan ng edukasyon. Mahalaga makapagtatag ng matibay na pundasyon ng karunungan sa isip ng mga mag-aaral sa pamamagitan ng pagtuklas ng mga pamamaraang lalong makapagpapaunawa sa mga mag-aaral ng kanilang lektura.</p>
+                <h2>Pananaliksik sa Politika</h2>
+                <p>Dito higit na kailangan ng maingat na pag-aaral at pag-iimbestiga sa larangang ito ay walang hanggang ang pagtuklas ng mga kaparaanan sa nagpapatatag ng ekonomiya at kalagayang pampulitika sa bansa.</p>
+                <h2>4.2 Makapagbasa at makapagbuod ng impormasyon, estadistika, datos atbp. mula sa mga babasahing nakasulat sa Filipino sa iba't ibang larangan</h2>
+                <h3>Pananaliksik ng mga Guro</h3>
+                <p>Ang mga sumusunod na halimbawa ng pananaliksik ng mga Guro ay ilan lamang sa mga gawa ng Guro.</p>
+                <img src="Images/guro.jpg" alt="Pananaliksik ng mga Guro" style="width: 900px; height: 250px; margin-bottom: 1rem;">
+                <h3>Pananaliksik ng mga mag-aaral</h3>
+                <p>Ang mga sumusunod na halimbawa ng pananaliksik ng mga Guro ay ilan lamang sa mga gawa ng mag-aaral.</p>
+                <img src="Images/mag-aaral.jpg" alt="Pananaliksik ng mga mag-aaral" style="width: 900px; height: 250px; margin-bottom: 1rem;">
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Fildis/week 3 fildis (1).pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

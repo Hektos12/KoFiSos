@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 16</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules1.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>WORKSYAP SA PAGSULAT NG AKDANG PAMPANITIKAN</h1>
+                <div class="week-badge">WEEK 16</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Mga Gabay sa Pagsulat ng Apat na Tula, Isang Sanaysay, o Isang Maikling Kwento</p>
+                </div>
+
+                <h2>PARAAN NG PAGSUSURI NG TAUHAN</h2>
+                
+                <div class="theory-section">
+                    <ul>
+                        <li>Suriin ang anyo, ugali, at paraan ng pagsasalita.</li>
+                        <li>Tingnan kung paano ipinakita ang kagandahang asal.</li>
+                        <li>Tukuyin ang tungkulin ng tauhan.</li>
+                        <li>Gamitan ng teoryang aangkop.</li>
+                    </ul>
+                </div>
+
+                <h2>A. PAGSUSURI NG MAIKLING KWENTO</h2>
+
+                <div class="theory-section">
+                    <h4>ELEMENTO NG MAIKLING KWENTO:</h4>
+                    <ul>
+                        <li>Tauhan – Nagpapagalaw at nagbibigay buhay sa kwento.</li>
+                        <li>Tagpuan – Lugar at panahon ng mga pangyayari.</li>
+                        <li>Banghay – Pagkakasunod-sunod ng mga pangyayari.</li>
+                        <li>Tunggalian – Laban ng tauhan sa sarili, lipunan, o kapaligiran.</li>
+                        <li>Magagandang Kaisipan – Mensahe o aral sa mambabasa.</li>
+                        <li>Simula at Wakas – Simula at katapusan ng kwento.</li>
+                    </ul>
+                    <p>Bakit Mahalaga ang Tauhan? Ang bisa ng akda ay nakasalalay sa paglalarawan at buhay na nilikha ng tauhan.</p>
+                </div>
+
+                <h2>URI NG MAIKLING KWENTO:</h2>
+
+                <div class="theory-section">
+                    <h4>KWENTO NG TAUHAN</h4>
+                    <p>Ang kwentong ito ay nakatuon sa pag-aaral sa mga tauhan sa loob ng kwento. Inilalarawan ang kanilang ugali, emosyon, at mga desisyon upang maipakita ang kanilang pagkatao at pag-unlad.</p>
+
+                    <h4>KWENTO NG KATUTUBONG KULAY</h4>
+                    <p>Tumatalakay ito sa kultura, tradisyon, at mga kaugalian ng isang partikular na lugar o komunidad. Ang layunin ay ipakita ang natatanging kapaligiran, pananamit, at pamumuhay ng mga tao sa lugar na iyon.</p>
+
+                    <h4>KWENTO NG KABABALAGHAN</h4>
+                    <p>Kwento ito na nagmula sa mga karaniwang mamamayan at laganap sa kanilang komunidad. Karaniwan itong may aral o sumasalamin sa mga paniniwala at kaugalian ng mga tao sa isang lipunan.</p>
+
+                    <h4>KWENTO NG KATATAKUTAN</h4>
+                    <p>Kwentong ang pangunahing layunin ay maghatid ng takot o pangamba sa mambabasa. Naglalaman ito ng mga pangyayaring nakakakilabot o nakakatakot.</p>
+
+                    <h4>KWENTO NG MADULANG PANGYAYARI</h4>
+                    <p>Nakasentro ang kwento sa isang dramatikong pangyayari na nagdudulot ng malaking pagbabago sa buhay ng tauhan. May matinding emosyon at kapanapanabik na aksyon sa mga tagpo nito.</p>
+
+                    <h4>KWENTONG SIKOLOHIKO</h4>
+                    <p>Kwentong nagbibigay-pansin sa damdamin at kaisipan ng mga tauhan sa gitna ng isang pangyayari. Layunin nitong ipakita ang malalim na emosyonal at mental na reaksyon ng tauhan sa mga sitwasyong kinakaharap nila.</p>
+
+                    <h4>KWENTO NG PAKIKIPAGSAPALARAN</h4>
+                    <p>Ang kwentong ito ay nakatuon sa mga kapana-panabik at mahahalagang pangyayari sa buhay ng tauhan, kadalasan sa paglalakbay o pagtuklas. Ang pokus ng kwento ay nasa aksyon at mga pagsubok na hinaharap ng tauhan sa kanilang paglalakbay o misyon.</p>
+
+                    <h4>KWENTO NG PAG-IBIG</h4>
+                    <p>Nakatuon ang kwento sa mga usapin ng pagmamahalan at relasyon sa pagitan ng dalawang tao. Binibigyang-diin nito ang damdamin, pagsasakripisyo, at mga pagsubok na hinaharap ng mga tauhan sa kanilang pag-iibigan.</p>
+
+                    <h4>KWENTO NG KATATAWANAN</h4>
+                    <p>Layunin ng kwentong ito na magbigay ng aliw at kasiyahan sa mga mambabasa. Karaniwan itong puno ng mga nakakatuwang sitwasyon, biro, at mga tauhang may kakaibang personalidad o ugali na nagpapasaya sa mambabasa.</p>
+                </div>
+
+                <h2>URI NG BISA NG KWENTO:</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>BISANG PANDAMDAMIN</li>
+                        <li>BISANG PANGKAISIPAN</li>
+                        <li>BISANG PANGKAASALAN</li>
+                    </ul>
+                </div>
+
+                <h2>B. PAGSUSURI NG TULA</h2>
+
+                <div class="theory-section">
+                    <h4>ANYO NG TULA:</h4>
+                    <p>MALAYANG TALUDTURAN: Ito ay isang uri ng tula na may sukat, tugma, at mga salitang may malalim na kahulugan. Sinusunod nito ang mga nakasanayang patakaran sa pagsusulat ng tula, gaya ng bilang ng pantig sa bawat taludtod at tugma sa bawat saknong.</p>
+                    <p>Uri ng tula na walang sinusunod na sukat o tugma. Malaya ang makata sa paggamit ng mga taludtod at saknong, kaya't ang pagpapahayag ng damdamin at kaisipan ay mas maluwag at malikhain.</p>
+                    <p>Isang anyo ng tula na may sukat ngunit walang tugma. Karaniwang may regular na bilang ng pantig sa bawat taludtod, subalit hindi kinakailangan na magkatugma ang dulo ng mga linya.</p>
+                </div>
+
+                <h2>ELEMENTO NG TULA:</h2>
+
+                <div class="theory-section">
+                    <p>Ang sukat ay tumutukoy sa bilang ng pantig sa bawat taludtod ng tula. Ito ang ritmo o pattern na sinusunod ng mga salita sa bawat linya, na nagbibigay ng musicality at estruktura sa tula.</p>
+                    <p>Halimbawa, ang karaniwang sukat ay wawaluhin (8 pantig), lalabindalawahin (12 pantig), at iba pa.</p>
+                    <p>Ang persona ay ang nagsasalita sa tula; siya ang boses na naglalahad ng mga kaisipan, damdamin, at karanasan sa loob ng akda. Hindi laging ang makata mismo ang persona; maaaring ito ay isang karakter o imahinaryong nilalang na ginamit upang ihatid ang mensahe ng tula.</p>
+                    <p>Ang saknong ay isang grupo ng mga taludtod sa loob ng tula. Ito ay binubuo ng dalawa o higit pang linya na magkakaugnay at nagpapahayag ng isang pangunahing ideya o tema. Ang mga saknong ay nagsisilbing mga "talata" sa isang tula.</p>
+                </div>
+
+                <h2>MGA URI NG TULA:</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>TULANG LIRIKO O PANDAMDAMIN - Tula na nagpapahayag ng damdamin at saloobin ng may-akda o tauhan.</li>
+                        <li>TULANG PASALAYSAY - Tula na nagkukwento ng mga pangyayari o tagpo sa buhay.</li>
+                        <li>TULANG PATNIGAN - Tula ng pagtatalo o balagtasan na nagpapakita ng husay sa pananalita.</li>
+                        <li>TULANG PANTANGHALAN - Tula na itinanghal sa entablado, tulad ng sarswela, na may diyalogo at kilos.</li>
+                    </ul>
+                </div>
+
+                <h2>C. PAGSUSURI NG DULA</h2>
+
+                <div class="theory-section">
+                    <h4>DYANRA NG DULA:</h4>
+                    <ul>
+                        <li>Melodrama - Dula na may mga malulungkot na pangyayari pero nagwawakas sa kasiyahan.</li>
+                        <li>Komedya - Dula na nagpapatawa at nagdudulot ng saya sa mga manonood.</li>
+                        <li>Trahedya - Dula na nauuwi sa pagkatalo o pagkamatay ng pangunahing tauhan.</li>
+                        <li>Parsa - Dula na nagpapakita ng nakakatawang mga eksena at aksyon.</li>
+                        <li>Saynete - Dula na nagpapakita ng kaugalian o kultura ng isang lugar o grupo.</li>
+                    </ul>
+                </div>
+
+                <h2>ELEMENTO NG DULA:</h2>
+
+                <div class="theory-section">
+                    <h4>BALANGKAS NG DULA:</h4>
+                    <ul>
+                        <li>Pamagat</li>
+                        <li>Nilalaman (Tauhan, Tagpuan)</li>
+                        <li>Kayarian (Dyanra, Teorya)</li>
+                        <li>Buod</li>
+                        <li>Pagsusuri (Aral, Bisa, Kamalayang Panlipunan)</li>
+                    </ul>
+                </div>
+
+                <h2>PAGSUSURI NG MGA AKDA</h2>
+
+                <div class="theory-section">
+                    <p>TEORYA: MAHALAGANG GAMITAN NG ANGKOP NA TEORYA.</p>
+                    <p>ARAL: TUKUYIN ANG GINTONG ARAL AT KAMALAYANG PANLIPUNAN NG AKDA.</p>
+                    
+                    <h4>HALIMBAWA NG PAGSUSURI NG MAIKLING KWENTO:</h4>
+                    <ul>
+                        <li>PAMAGAT: MAGPARAYANG PUSO</li>
+                        <li>TAUHAN: ISSA AT BEN</li>
+                        <li>TAGPUAN: NOVALICHES, QUEZON CITY</li>
+                        <li>BANGHAY: PAG-UNLAD NG RELASYON HANGGANG SA SULIRANIN AT KASUKDULAN</li>
+                        <li>WAKAS: NAGPARAYA SI ISSA PARA SA MAGIGING ANAK NI BEN</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Soslit/MODULE 16_SOSLIT.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

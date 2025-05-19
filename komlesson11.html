@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 11</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules2.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>URBANISASYON</h1>
+                <div class="week-badge">WEEK 11</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Ang urbanisasyon ay tumutukoy sa proseso ng paglago at pag-unlad ng mga lungsod at bayan, kung saan ang mga tao mula sa mga rural na lugar ay lumilipat patungo sa mga urban na lugar upang maghanap ng mas magagandang oportunidad sa trabaho, edukasyon, at iba pang serbisyong panlipunan. Kasama dito ang pagpapalawak ng mga imprastruktura, tulad ng mga kalsada, gusali, at iba pang pasilidad na kinakailangan sa pamumuhay ng mga tao sa isang lungsod.</p>
+                </div>
+
+                <h2>Kumbersyon sa Lupa (Land Conversion)</h2>
+
+                <div class="theory-section">
+                    <p>Ang kumbersyon sa lupa ay ang pagbabago ng paggamit ng isang lupa mula sa agrikultural o natural na kapaligiran patungo sa urban na paggamit, gaya ng komersyal, pang-industriya, o pang-residential na mga proyekto. Madalas itong nangyayari sa mga lungsod upang matugunan ang lumalaking pangangailangan ng populasyon. Gayunpaman, may mga negatibong epekto ito sa kalikasan, tulad ng pagkasira ng mga kagubatan at mga ekosistema.</p>
+                </div>
+
+                <h2>Polusyon</h2>
+
+                <div class="theory-section">
+                    <p>Ang polusyon ay ang pagkalat ng mga nakakapinsalang substansya sa hangin, tubig, at lupa na nagdudulot ng masamang epekto sa kalusugan ng tao at ng kalikasan. Sa panahon ng urbanisasyon, ang polusyon ay lalong lumalala dahil sa dumaraming industriya, sasakyan, at iba pang aktibidad na naglalabas ng mga nakakalason na kemikal sa kapaligiran.</p>
+                </div>
+
+                <h2>Pagkawasak ng Kalikasan</h2>
+
+                <div class="theory-section">
+                    <p>Ang pagkawasak ng kalikasan ay tumutukoy sa patuloy na pagkasira ng mga natural na yaman tulad ng mga kagubatan, ilog, at dagat. Isa itong malaking problema dahil ang kalikasan ay nagbibigay ng mga likas na yaman na kailangan ng tao, pati na rin sa pagsustento ng mga hayop at halaman. Ang urbanisasyon at iba pang industriyal na aktibidad ay nagiging sanhi ng pagkaubos ng mga likas na yaman at mga ekosistema.</p>
+                </div>
+
+                <h2>Climate Change (Pagbabago ng Klima)</h2>
+
+                <div class="theory-section">
+                    <p>Pagbabago ng klima ay isang malawakang pagbabago sa mga pattern ng panahon at klima sa buong mundo. Kabilang dito ang pag-init ng mundo (global warming) at ang mga pagbabago sa mga natural na ekosistema na nagdudulot ng mga matinding epekto sa kalikasan at tao. Ang mga aktibidad ng tao, tulad ng pagputol ng mga kagubatan at ang labis na paggamit ng fossil fuels, ay nagpapalala sa pagbabagong ito.</p>
+
+                    <h4>Mga Sanhi ng Climate Change</h4>
+                    <ul>
+                        <li>Agrikultura - Ayon sa World Bank, kalahati ng nitrous oxide at methane (mga greenhouse gases) ay mula sa agrikultura.  Ang mga dumi ng hayop, paggamit ng pataba, at mga gawain sa pagsasaka ay nagdudulot ng direktang emisyon ng mga harmful gases.  Gayundin, ang paggamit ng fossil fuels sa mga makinarya at transportasyon ay nagpapalakas ng epekto ng climate change. </li>
+                        <li>Transportasyon - Ang patuloy na pagdami ng mga sasakyan na gumagamit ng gasolina at petrolyo ay isang malaking sanhi ng polusyon sa hangin.  Ang mga sasakyang ito ay naglalabas ng black carbon, volatile organic compounds, at carbon monoxide, na tumutulong sa pagpapainit ng mundo. </li>
+                    </ul>
+                </div>
+                <div class="theory-section">
+                    <h4>Paggamit at Paglikha ng Enerhiya</h4>
+                    <p>Ayon kay Nadarev Saño ng Greenpeace Southeast Asia, ang pagsunog ng fossil fuels mula sa mga coal-fired power plants ay isang pangunahing dahilan ng climate change.  Ang mga power plant na ito ay naglalabas ng carbon emissions, at ang pagmimina ng coal ay nakakasira pa sa kalikasan, tulad ng pagputol ng mga puno at polusyon sa hangin. </p>
+                </div>
+                <div class="theory-section">
+                    <h4>Pagsunog ng Basura</h4> 
+                    <p>Ang pagsunog ng mga basura, pati na ang mga tuyong halaman at damo, ay naglalabas ng methane at carbon dioxide, na parehong greenhouse gases na nagpapalubha sa global warming.</p>
+
+                <h2>Mga Epekto ng Climate Change sa Pilipinas</h2>
+
+                </div>
+                <div class="theory-section">
+                    <ul>
+                        <li>Pagtaas ng Antas ng Dagat - Ang pag-init ng mundo ay nagdudulot ng pagkatunaw ng mga yelo sa mga polar regions.</li>
+                        <li>Pag-init ng Temperatura - Ang bansa ay nakakaranas ng pagtaas ng temperatura.</li>
+                        <li>Malalakas at Madalas na Bagyo at Pagbaha - Tulad ng naranasan sa Bagyong Yolanda.</li>
+                        <li>Matinding Tagtuyot (El Niño) - Nagpapabigat sa mga magsasaka at mga lokal na komunidad.</li>
+                        <li>Pagkasira ng mga Sakahan - Dulot ng matinding tagtuyot at pagbaha.</li>
+                        <li>Pagkasira ng mga Bakawan - Dulot ng pagtaas ng antas ng dagat at malalakas na bagyo.</li>
+                    </ul>
+                </div>
+
+                <h2>Mga Solusyon na Maaaring Isagawa ng mga Mamamayan</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Paggamit ng mga Napapalitang Enerhiya - Solar at wind energy.</li>
+                        <li>Paggamit ng Malinis na Enerhiya - Shift mula sa mga maruruming pinagkukunan.</li>
+                        <li>Pagsakay sa mga Transportasyong Pangmasa - Jeepney, bus, o tren.</li>
+                        <li>Paglalakad o Paggamit ng Bisikleta - Para sa malapit na destinasyon.</li>
+                        <li>Pagreresiklo ng Basura - Tamang pag-recycle ng mga basura.</li>
+                    </ul>
+                </div>
+
+                <h2>Bagyo at Baha (Super Typhoon Yolanda)</h2>
+
+                <div class="theory-section">
+                    <p>Noong Nobyembre 3, 2013, ang Super Typhoon Yolanda (o Haiyan) ay sumalanta sa Visayas at mga bahagi ng Luzon at Mindanao, na nagdulot ng matinding pagbaha at pagkasira ng mga ari-arian. Tinatayang higit 6,000 katao ang namatay at ang pinsala sa bansa ay umabot sa US $12.9 bilyon. Kung hindi malulutas ang climate change, mas malaki ang posibilidad na magkakaroon pa ng mga mas malalakas na bagyo kaysa sa Yolanda, na magdudulot ng mas malaking pinsala sa mga bansang daraanan.</p>
+                </div>
+
+                <h2>Paris Agreement</h2>
+
+                <div class="theory-section">
+                    <p>Ang Paris Agreement ay isang kasunduan na nilagdaan ng 179 na bansa at European Union noong 2015 sa Paris, France. Layunin ng kasunduan na makipagtulungan ang bawat bansa upang limitahan ang global na temperatura sa mas mababa sa 2°C, at kung maaari ay 1.5°C lamang, kumpara sa mga pre-industrial na antas. Ang kasunduan ay naglalayong pigilan ang mas malalang epekto ng climate change sa buong mundo. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Komfil/WEEK 11 KOMFIL.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

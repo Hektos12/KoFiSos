@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules2.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>ANG WIKA: PINAGMULAN, BATAYAN, AT PROBISYON SA SALIGANG BATAS</h1>
+                <div class="week-badge">WEEK 1</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Ang wika ay mahalagang bahagi ng ating kultura at pagkakakilanlan. Ayon kay Henry Gleason, ito ay isang masistemang balangkas ng mga tunog na isinasaayos nang arbitraryo upang magamit sa komunikasyon ng isang partikular na kultura.</p>
+                </div>
+
+                <h2>Mga Probisyon Pangwika sa Saligang Batas</h2>
+                
+                <div class="theory-section">
+                    <h4>Biyak na Bato (1896)</h4>
+                    <p>Itinatag ang unang republika ng Pilipinas at itinakda ang Tagalog bilang opisyal na wika ng bansa, isang mahalagang hakbang sa pambansang identidad.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Saligang Batas ng 1935</h4>
+                    <p>Itinatakda sa Artikulo XIII, Seksyon 3 ang layunin ng Pambansang Asemblea na bumuo ng wikang pambansa batay sa katutubong wika, habang patuloy ang paggamit ng Ingles at Kastila bilang mga opisyal na wika.</p>
+                </div>
+
+                <h2>Muling Pagbabago sa Saligang Batas</h2>
+
+                <div class="theory-section">
+                    <h4>Saligang Batas ng 1973</h4>
+                    <p>Inampon ang Filipino bilang wikang pambansa, subalit nagsimula ito lamang sa panahon ng Batas Militar, kaya't may mga limitasyon sa implementasyon.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Saligang Batas ng 1987</h4>
+                    <p>Pinagtibay ang Filipino bilang wikang pambansa at Ingles bilang opisyal na wika para sa komunikasyon at pagtuturo. Itinatag ang Komisyon ng Wikang Pambansa para sa patuloy na pagpapaunlad ng mga wika sa Pilipinas.</p>
+                </div>
+
+                <h2>Teorya ng Pinagmulan ng Wika</h2>
+
+                <div class="theory-section">
+                    <h4>Teoryang Biblikal</h4>
+                    <p>Ayon sa Teoryang Biblikal o sa kwento ng Tore ng Babel, ginamit ng Diyos ang wika upang likhain ang sanlibutan. Pinaniniwalaan na nilikha ang tao sa larawan ng Diyos at binigyan ng buhay sa pamamagitan ng wika.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Teoryang Bow-wow at Dingdong</h4>
+                    <p>Pinaniniwalaan na ang wika ay nagmula sa paggaya ng tao sa mga tunog ng kalikasan, tulad ng huni ng ibon o ugong ng hayop. Ayon sa Teoryang Dingdong, ang wika ay bunga ng mga tunog na naririnig sa kapaligiran bilang paraan upang makipag-ugnayan.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Iba pang Teorya</h4>
+                    <ul>
+                        <li>Teoryang Yum-Yum: Ang wika ay nagsimula sa mga senyas at tunog upang magpahayag ng mga damdamin at aksyon.</li>
+                        <li>Teoryang Ta-ta: Gamit ang galaw ng kamay bilang pinagmulan ng wika.</li>
+                        <li>Teoryang Pooh-pooh: Ang wika ay nag-umpisa sa mga tunog na naglalaan ng damdamin o emosyon.</li>
+                        <li>Teoryang Yo-He-Yo: Ang wika ay nilikha mula sa pisikal na lakas at tunog.</li>
+                    </ul>
+                </div>
+
+                <h2>Wika: Pundasyon ng Kultura at Komunikasyon</h2>
+                
+                <div class="theory-section">
+                    <h4>Pagpapahayag</h4>
+                    <p>Ang wika ang pangunahing paraan upang maipahayag ang damdamin, kaisipan, at kultura ng isang tao o grupo.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Pagpapaunlad</h4>
+                    <p>Patuloy na yumayaman ang wika sa paglipas ng panahon, bunga ng kulturang pumapalibot dito.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Pagkakaisa</h4>
+                    <p>Nagiging tulay ang wika upang magbuklod ang mga tao at bumuo ng pambansang pagkakakilanlan.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Komfil/WEEK 1 KOMFIL.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

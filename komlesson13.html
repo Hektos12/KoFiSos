@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 13</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules2.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>MGA NAPAPANAHONG ISYUNG LOKAL AT NASYONAL</h1>
+                <div class="week-badge">WEEK 13</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Ang globalisasyon ay tumutukoy sa proseso ng pagtutulungan at pakikipag-ugnayan ng mga bansa sa buong mundo upang magkaroon ng malayang daloy ng mga produkto, serbisyo, impormasyon, at mga tao. Layunin nito na pagkaisahin ang mga bansa sa mas malawak na sistema ng kalakalan, teknolohiya, at imprastruktura upang mapalakas ang ekonomiya at makamit ang mas mataas na antas ng global na kompetisyon.</p>
+                </div>
+
+                <h2>Positibong Epekto ng Globalisasyon</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Pagdami ng Banyagang Mangangalakal - Nagiging bukas ang merkado para sa mga banyagang kumpanya na makapasok at makipagkalakalan, na nagdudulot ng mas maraming oportunidad sa negosyo at trabaho.</li>
+                        <li>Paglikha ng Trabaho para sa mga Pilipino - Dahil sa pagdami ng mga banyagang mangangalakal at pagpasok ng mga international na kompanya, dumarami ang mga oportunidad sa trabaho para sa mga mamamayang Pilipino.</li>
+                        <li>Paghusay ng Ugnayan sa mga Karatig Bansa - Ang mga bansa ay mas madali nang nakikipag-ugnayan sa isa't isa, kaya mas pinadali ang pag-access sa mga produkto, serbisyo, at impormasyon mula sa iba't ibang bahagi ng mundo.</li>
+                    </ul>
+                </div>
+
+                <h2>Negatibong Epekto ng Globalisasyon</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Pagdami ng Pribatisasyon, Deregulasyon, at Kontraktuwalisasyon - Lalo pang pinatibay ang pribatisasyon ng mga serbisyo at negosyo, kaya't lumalakas ang kontrol ng malalaking kumpanya at maliliit na sektor ng lipunan, tulad ng mga manggagawa, ay nahihirapan.</li>
+                        <li>Pagtaas ng mga Presyo ng Bilihin - Dahil sa mga polisiya ng deregulation at pribatisasyon, tumataas ang presyo ng mga pangunahing bilihin tulad ng tubig, kuryente, at mga pagkain.</li>
+                        <li>Pag-abuso ng mga Banyagang Kompanya - Ang mga banyagang kumpanya ay may malayang galaw sa pagkuha ng mga likas yaman ng bansa at paggamit ng murang lakas-paggawa, na nagiging sanhi ng pang-aabuso sa kalikasan at mga manggagawa.</li>
+                    </ul>
+                </div>
+
+                <h2>Lipunang Pilipino sa Panahon ng Globalisasyon</h2>
+
+                <div class="theory-section">
+                    <p>Sa pagpasok ng globalisasyon, marami ang isinakripisyo, lalo na ang kalagayan ng mga maralitang manggagawa. Ang gobyerno ay nagpatupad ng mga patakaran na hindi nakikinabang ang masa, tulad ng malayang pagpasok ng mga dayuhang produkto at kompanya. Sa kabila ng mga pagsisikap na makasabay sa pandaigdigang kalakalan, lumalala ang paghihirap ng mga Pilipino, partikular na ang mga manggagawa, dahil sa mababang sahod at kakulangan ng mga benepisyo.</p>
+                </div>
+
+                <h2>Dislokasyon sa Pambansang Minorya</h2>
+
+                <div class="theory-section">
+                    <p>Ang mga komunidad ng mga pambansang minorya, tulad ng mga Lumad sa Davao, ay direktang naapektuhan ng mga patakarang pinatupad ng gobyerno, kabilang na ang mga isyu ng militarisasyon at mga paglabag sa kanilang mga karapatang pantao. Ang mga Lumad ay pinapalayas mula sa kanilang mga lupa at kabuhayan, at ang kanilang mga paaralan ay tinarget dahil sa mga paratang na sila'y may kaugnayan sa mga grupong rebelde.</p>
+                </div>
+
+                <h2>Mga Uri ng Manggagawa sa Panahon ng Globalisasyon</h2>
+
+                <div class="theory-section">
+                    <h4>Pangulong Elpidio Quirino (R.A. 602, 1951) - Minimum Wage Law</h4>
+                    <p>Nagbigay-liwanag sa kalagayan ng mga manggagawa at pinagtibay ang pagkakaroon ng minimum na sahod.</p>
+
+                    <h4>Pangulong Ferdinand Marcos</h4>
+                    <p>R.A. 6135 (1970) Export Incentives Act at R.A. 5186 (1976) Investment Incentives Act ay mga batas na nagbigay-pabor sa mga dayuhang kapitalista, at nagpatibay ng neoliberal na ekonomiya.</p>
+
+                    <h4>Pangulong Corazon Aquino</h4>
+                    <p>R.A. 6272 (1989) Wage Rationalization Act: Tinutukoy ang mga regional wage rates at ang pagkakaiba ng sahod sa Metro Manila at mga probinsya. R.A. 6758 (1989) Compensation and Position Classification Act: Pagtatalaga ng mga salary grades para sa mga kawani ng gobyerno.</p>
+                </div>
+
+                <h2>Kontraktuwalisasyon</h2>
+
+                <div class="theory-section">
+                    <p>Panahon ng Espanyol: Cabo/Negosyador na nagdala ng mga manggagawa sa mga kompanya. Sa ngayon, ito ay mas kilala bilang Manpower Agency, na nag-aalok ng trabaho na may kontrata o pakyawan.</p>
+                    <p>1997 - Ipinatupad ng Department of Labor and Employment (DOLE) ang D.O. 10, na nagpapahintulot sa kontraktuwalisasyon lalo na sa mga industriya na may seasonal na pangangailangan ng trabaho tulad ng malls at pabrika.</p>
+                    <p>5-5-5/ENDO - Isang sistema kung saan ang mga manggagawa ay walang karapatan na maging regular at mawalan ng benepisyo, kaya't hindi sila makakapagtatag ng mga unyon o magtanggol ng kanilang mga karapatan.</p>
+                    <p>IBON Foundation - Mula 2010 hanggang 2016, mahigit 780 kaso ng paglabag sa karapatan ng mga manggagawa ang naitala, na nakaapekto sa higit 20,000 indibidwal (IBON Foundation, 2016).</p>
+                </div>
+
+                <h2>Jeepney Phase-Out</h2>
+
+                <div class="theory-section">
+                    <p>Ang Jeepney Phase-Out ay isang kontrobersyal na isyu na naglalayong gawing moderno ang sistema ng pampasaherong jeepneys, ngunit may mga negatibong epekto ito sa mga manggagawa at pamilya ng mga jeepney driver, na maaaring mawalan ng kabuhayan at trabaho.</p>
+                </div>
+
+                <h2>TRAIN Law</h2>
+
+                <div class="theory-section">
+                    <p>Ang Tax Reform for Acceleration and Inclusion (TRAIN) Law ay nagbigay ng mga pagbabago sa sistema ng pagbubuwis sa bansa, kabilang ang mga dagdag na buwis sa mga produkto at serbisyo, na nagdulot ng pagtaas ng presyo ng mga pangunahing bilihin. Bagamat layunin nitong mapondohan ang mga proyekto ng gobyerno, ito ay nagdulot ng karagdagang pasanin sa mga mahihirap.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Komfil/WEEK 13 KOMFIL.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iba't-Ibang Uri ng Pananaliksik</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                margin-left: 0;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .research-card {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #1a237e;
+            margin-bottom: 1.5rem;
+        }
+
+        .research-card h4 {
+            color: #1a237e;
+            margin-top: 0;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/Logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>IBA'T-IBANG URI NG PANANALIKSIK</h1>
+                <div class="week-badge">WEEK 14</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <h3>4.1 Malaman ang Iba't Ibang Uri ng Pananaliksik</h3>
+                    <p>Ang pananaliksik ay isang sistematikong proseso ng pagtuklas ng mga kasagutan sa mga tanong o suliranin sa pamamagitan ng pangangalap at pagsusuri ng datos. Isa itong mahalagang kasangkapan sa pag-unlad ng kaalaman ng tao at lipunan. Ginagamitan ito ng iba't ibang metodo upang matiyak ang bisa at bisa ng resulta.</p>
+                </div>
+
+                <div class="research-card">
+                    <h4>Mga Uri ng Pananaliksik</h4>
+                    
+                    <h5>1. Applied Research</h5>
+                    <ul>
+                        <li>Tinatawag ding praktikal na pananaliksik.</li>
+                        <li>Layunin nito ang agarang aplikasyon sa tunay na buhay.</li>
+                        <li>Gumagamit ito ng mas sopistikadong pamamaraan tulad ng estadistika at pagsusuri ng datos.</li>
+                        <li>Karaniwang isinasagawa sa limitadong panahon, ayon sa hinihingi ng isang sitwasyon o problema.</li>
+                        <li>Halimbawa: pag-aaral kung epektibo ang isang bagong gamot sa paggamot ng isang partikular na sakit.</li>
+                    </ul>
+
+                    <h5>2. Pure Research</h5>
+                    <ul>
+                        <li>Isinasagawa dahil sa personal na interes o kasiyahan ng mananaliksik.</li>
+                        <li>Walang agarang layuning praktikal, kundi para palalimin ang kaalaman sa isang paksa.</li>
+                        <li>Ginagawa ito batay sa hilig o pagkamausisa ng isang tao.</li>
+                        <li>Halimbawa: pananaliksik sa mga teoryang pisikal na hindi pa tiyak ang aplikasyon sa kasalukuyan.</li>
+                    </ul>
+
+                    <h5>3. Empirical o Mala-siyentipikong Pananaliksik</h5>
+                    <ul>
+                        <li>Nakasalalay sa aktwal na obserbasyon at pagsusuri ng konkretong ebidensiya.</li>
+                        <li>Kinakailangan ang masinsinang pangangalap ng datos at pagsasagawa ng pagsusuri upang mapatunayan ang hypothesis.</li>
+                        <li>Layunin nitong maging obhetibo at mapanuri.</li>
+                    </ul>
+                </div>
+
+                <div class="research-card">
+                    <h4>Pamamaraan sa Pananaliksik</h4>
+                    
+                    <h5>1. Deskriptibong Pamamaraan</h5>
+                    <ul>
+                        <li>Isa sa pinakakaraniwang uri ng pananaliksik.</li>
+                        <li>Layunin nitong ilarawan nang malinaw ang kasalukuyang kalagayan ng isang paksa.</li>
+                        <li>Tumutugon sa mga tanong na: sino, ano, kailan, saan, at paano.</li>
+                        <li>Ayon kay Alipio M. Garcia, sinasaklaw nito ang mga pag-aaral na naglalarawan sa mga bagay, pangyayari, o sistemang umiiral sa kasalukuyan.</li>
+                        <li>Sa tulong ng mga respondente, nailalarawan ang isang kaganapan batay sa kanilang pananaw, karanasan, at reaksyon.</li>
+                    </ul>
+
+                    <h5>2. Historikal na Pamamaraan</h5>
+                    <ul>
+                        <li>Nakatuon naman ito sa pag-aaral ng mga nakaraang pangyayari.</li>
+                        <li>Layunin nitong maunawaan ang impluwensiya ng nakaraan sa kasalukuyan.</li>
+                        <li>Nangangalap ito ng dokumento, tala, at ebidensiyang may kaugnayan sa kasaysayan ng isang isyu o sitwasyon.</li>
+                        <li>Tumutulong ito upang masuri kung paanong ang mga karanasan ng nakaraan ay humuhubog sa kasalukuyan at hinaharap.</li>
+                    </ul>
+
+                    <h5>3. Eksperimental na Pamamaraan</h5>
+                    <ul>
+                        <li>Ginagamit sa agham at teknolohiya kung saan sinusubukan ang epekto ng isang baryabol sa isang kalagayan.</li>
+                        <li>May malinaw na disenyo at kontrol sa mga salik na maaaring makaapekto sa resulta.</li>
+                        <li>Ayon kay Luke Wales, ito'y may mga sumusunod na katangian:</li>
+                        <ul>
+                            <li>Maaaring manipulahin ang mga baryabol.</li>
+                            <li>Nasusukat ang resulta sa pamamagitan ng eksperimentasyon.</li>
+                            <li>Naiaalis o nakokontrol ang mga salik na walang kaugnayan sa pag-aaral.</li>
+                            <li>Layunin nitong makakuha ng valid at reliable na resulta.</li>
+                        </ul>
+                    </ul>
+
+                    <h5>4. Etnograpikong Pamamaraan</h5>
+                    <ul>
+                        <li>Nakatutok sa kultura, tradisyon, at karanasan ng isang pamayanan o grupo.</li>
+                        <li>Hindi sapat ang pagbabasa; kailangan ng aktwal na pakikipamuhay at pagmamasid ng mananaliksik.</li>
+                        <li>Ayon kay Eugene Y. Evasco, ito ay may tatlong antas:</li>
+                        <ul>
+                            <li>Metodolohikal – gamit ang antropolohiya sa pagsasaliksik.</li>
+                            <li>Dokumentaryo – pagsasagawa ng tala o dokumentasyon ng kultura.</li>
+                            <li>Estilong Panulat – tinatawag na ethnographic writing, na deskriptibo, replektibo, at malikhaing anyo ng pagsulat.</li>
+                        </ul>
+                    </ul>
+                </div>
+
+                <div class="research-card">
+                    <h4>4.2 Maipaliwanag ang Mahigpit na Ugnayan ng Wikang Pambansa sa Pananaliksik</h4>
+                    <p>Ang paggamit ng wikang pambansa (Filipino) sa pananaliksik ay may mahalagang papel sa pagpapayaman ng kaalaman sa iba't ibang disiplina. Sa pamamagitan ng Filipino:</p>
+                    <ul>
+                        <li>Nagiging mas madaling maunawaan ang pananaliksik para sa mas maraming Pilipino.</li>
+                        <li>Mas naipapahayag ang lokal na karanasan at kaalaman, na maaaring hindi maipaliwanag nang buo sa banyagang wika.</li>
+                        <li>Nabibigyang halaga ang kultura at identidad ng bansa, lalo na sa mga pananaliksik na tumatalakay sa kasaysayan, wika, at lipunan.</li>
+                        <li>Nahahasa ang kakayahan ng mga mag-aaral at mananaliksik sa paggamit ng sariling wika bilang instrumento ng kaalaman.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Ang Halaga ng Pananaliksik</h4>
+                    <ul>
+                        <li>Pinalalawak ang Kaalaman – Sa bawat pananaliksik, nadaragdagan ang ating pag-unawa sa mundo, sa sarili, at sa lipunan.</li>
+                        <li>Nagbibigay ng Kontribusyon sa Lipunan – Sa pamamagitan nito, masosolusyunan ang mga isyung panlipunan, pangkultura, at pang-ekonomiya.</li>
+                        <li>Nagbubukas ng Karanasan – Maaaring makipag-ugnayan ang mananaliksik sa iba't ibang tao at sektor ng lipunan, na lumalawak ang kanyang pananaw.</li>
+                        <li>Napapahusay ang Kritikal na Pag-iisip – Sa pagsusuri ng datos, napapanday ang kakayahan ng tao sa mapanuring pag-iisip.</li>
+                        <li>Nagiging Gamit sa Pag-unlad – Kung nakaangkop sa pangangailangan ng lipunan, ang pananaliksik ay nagsisilbing gabay sa pagpapabuti ng kalagayan ng bansa.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Fildis/WEEK 14 FILDIS.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

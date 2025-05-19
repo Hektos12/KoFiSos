@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f6f8fc;
+    color: #222;
+}
+
+.main-header {
+    background: #223a7a;
+    color: #fff;
+    padding: 2rem 1rem 3.5rem 1rem;
+    text-align: center;
+    position: relative;
+}
+
+.main-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.week-badge {
+    display: inline-block;
+    background: #e94e77;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 4.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.container {
+    max-width: 1100px;
+    margin: -2rem auto 2rem auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(34,58,122,0.08);
+    padding: 2rem 2.5rem 2.5rem 2.5rem;
+}
+
+.info-box {
+    background: #eaf4fb;
+    border-left: 4px solid #3b82f6;
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2rem;
+    color: #223a7a;
+    font-size: 1.08rem;
+}
+
+.section-title {
+    color: #223a7a;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+hr {
+    border: none;
+    border-top: 2px solid #223a7a;
+    margin: 0 0 2rem 0;
+}
+
+.cards-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.card {
+    background: #f7faff;
+    border: 1px solid #dbeafe;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(34,58,122,0.04);
+    padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+    flex: 1 1 300px;
+    min-width: 260px;
+    max-width: 350px;
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #223a7a;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.card ol {
+    padding-left: 1.2rem;
+    margin: 0.5rem 0 0 0;
+}
+
+@media (max-width: 900px) {
+    .container {
+        padding: 1rem;
+    }
+    .cards-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+} 

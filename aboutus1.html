@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - KoFiSos</title>
+    <style>
+        :root {
+            --primary: #2d6cdf;
+            --accent: #f7b32b;
+            --bg: #f8f9fa;
+            --card-bg: #fff;
+            --text: #222;
+            --muted: #666;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+        header {
+            background: var(--primary);
+            color: #fff;
+            padding: 2.5rem 0 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(44,108,223,0.08);
+        }
+        header h1 {
+            font-size: 2.7rem;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: 1px;
+        }
+        .hero {
+            max-width: 700px;
+            margin: 2rem auto 2.5rem auto;
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            color: var(--muted);
+            font-size: 1.1rem;
+            margin-bottom: 0.7rem;
+        }
+        .mission-vision {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0 2.5rem 0;
+        }
+        .mission-vision .mv-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(44,108,223,0.07);
+            padding: 1.5rem 2rem;
+            min-width: 260px;
+            max-width: 340px;
+        }
+        .mission-vision h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .mission-vision p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+        .team-section {
+            background: #eaf0fa;
+            padding: 3rem 0 2rem 0;
+        }
+        .team-section h3 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .team-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(44,108,223,0.09);
+            padding: 2rem 1.2rem 1.2rem 1.2rem;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .team-card:hover {
+            transform: translateY(-7px) scale(1.03);
+            box-shadow: 0 6px 24px rgba(44,108,223,0.13);
+        }
+        .team-card img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            margin-bottom: 1rem;
+        }
+        .team-card h4 {
+            margin: 0.5rem 0 0.2rem 0;
+            font-size: 1.15rem;
+            color: var(--primary);
+        }
+        .team-card .role {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        .team-card .quote {
+            color: var(--muted);
+            font-size: 0.97rem;
+            font-style: italic;
+            margin-bottom: 0.2rem;
+        }
+        .info-section {
+            max-width: 800px;
+            margin: 2.5rem auto 2rem auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(44,108,223,0.07);
+            padding: 2rem 2.5rem;
+        }
+        .info-section p {
+            color: var(--muted);
+            font-size: 1.08rem;
+            margin-bottom: 1rem;
+        }
+        .contact-section {
+            max-width: 700px;
+            margin: 2.5rem auto 2rem auto;
+            background: #f7faff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(44,108,223,0.07);
+            padding: 2rem 2.5rem;
+            text-align: center;
+        }
+        .contact-section h5 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.7rem;
+        }
+        .contact-section a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: color 0.2s;
+        }
+        .contact-section a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        footer {
+            background: var(--primary);
+            color: #fff;
+            text-align: center;
+            padding: 1.2rem 0 0.7rem 0;
+            margin-top: 2rem;
+            font-size: 1rem;
+        }
+        @media (max-width: 700px) {
+            .mission-vision {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            .info-section, .contact-section {
+                padding: 1.2rem 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header style="display: flex; align-items: center; justify-content: center; position: relative; min-height: 120px;">
+        <div style="position: absolute; left: 1.5rem; top: 0; display: flex; flex-direction: column; align-items: flex-start;">
+            <a href="index.html" style="display: block; margin-bottom: 0.5rem;">
+                <img src="Images/logo.png" alt="Logo" style="height: 130px; width: auto; display: block; margin-top: 24px;">
+            </a>
+            <button onclick="history.back()" style="
+                background: white;
+                color: black;
+                border: none;
+                border-radius: 24px;
+                padding: 0.6rem 1.7rem;
+                font-size: 1rem;
+                font-family: inherit;
+                cursor: pointer;
+                box-shadow: 0 2px 8px rgba(233, 236, 241, 0.08);
+                transition: background 0.2s, box-shadow 0.2s;
+                margin-top: 0.2rem;
+            "
+            onmouseover="this.style.background='#f0f0f0'"
+            onmouseout="this.style.background='white'"
+            >
+                &#8592; Back
+            </button>
+        </div>
+        <h1 style="flex: 1; text-align: center; margin: 0;">Meet Our Developers</h1>
+    </header>
+    <div class="hero">
+        <h2>About Us</h2>
+        <p>Welcome to our educational website designed to help students learn and review lessons from Week 1 to Week 17 in the subjects FILDIS (Filipino sa Iba't Ibang Disiplina), SOSLIT (Sosyedad at Literatura), and KOMFIL (Komunikasyon sa Akademikong Filipino).</p>
+        <p>This website was developed by BSIT 1st Year students from Section 12021 at Bestlink College of the Philippines as part of our academic project. Our goal is to make learning more accessible and organized by presenting the lessons in a clear, user-friendly format.</p>
+    </div>
+    <div class="mission-vision">
+        <div class="mv-card">
+            <h3>Our Mission</h3>
+            <p>To create a centralized and accessible learning platform for Filipino subjects to help students succeed academically.</p>
+        </div>
+        <div class="mv-card">
+            <h3>Our Vision</h3>
+            <p>We envision a community of learners empowered by digital tools and collaboration.</p>
+        </div>
+    </div>
+    <section class="team-section">
+        <h3>The People Behind the Magic</h3>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="Images/Ma'am Leila.jpg" alt="Ma'am Leila Romar P. Bellen">
+                <h4>Ma'am Leila Romar P. Bellen</h4>
+                <div class="role">Author</div>
+                <div class="quote">BSIT 1221 Fildis Instructor</div>
+            </div>
+            <div class="team-card">
+                <img src="Images/Lonzaga, John Bert (240100530).jpg" alt="Lonzaga, John Bert">
+                <h4>Lonzaga, John Bert</h4>
+                <div class="role">Main Developer</div>
+                <div class="quote">"No matter how hard or impossible it is. Never lose sight of your goal."</div>
+            </div>
+            <div class="team-card">
+                <img src="Images/Rustia, Reynielle (240106621).jpg" alt="Rustia, Reynielle">
+                <h4>Rustia, Reynielle</h4>
+                <div class="role">Web Developer</div>
+                <div class="quote">"Code never lies, comments sometimes do."</div>
+            </div>
+            <div class="team-card">
+                <img src="Images/Torno, Mark Gabriel C. (240108880).jpg" alt="Torno, Mark Gabriel C.">
+                <h4>Torno, Mark Gabriel C.</h4>
+                <div class="role">Web Developer</div>
+                <div class="quote">"Victory belongs to the most persevering."</div>
+            </div>
+            <div class="team-card">
+                <img src="Images/Santiago, Clarence P. (240108978).jpg" alt="Santiago, Clarence P.">
+                <h4>Santiago, Clarence P.</h4>
+                <div class="role">Web Developer</div>
+                <div class="quote">"Hardwork is worth less for those who don't believe in themselves."</div>
+            </div>
+            <div class="team-card">
+                <img src="Images/Groyon, James Danielle (240108982).jpg" alt="Groyon, James Danielle">
+                <h4>Groyon, James Danielle</h4>
+                <div class="role">Web Developer</div>
+                <div class="quote">"Let your dreams outgrow your fears."</div>
+            </div>
+            <div class="team-card">
+                <img src="Images/Artillero, John Mig M. (240108857).jpg" alt="Artillero, John Mig M.">
+                <h4>Artillero, John Mig M.</h4>
+                <div class="role">Web Developer</div>
+                <div class="quote">"Life is like a computer program, no matter what bug it get you can just debbug it."</div>
+            </div>
+            <div class="team-card">
+                <img src="Images/Bron, Robert Josh B. (240105843).jpg" alt="Bron, Robert Josh B.">
+                <h4>Bron, Robert Josh B.</h4>
+                <div class="role">Web Developer</div>
+                <div class="quote">"If songs can't fix your problems, actions will do."</div>
+            </div>
+            <div class="team-card">
+                <img src="Images/Lopez, Janine Nicaeela A. (240108862).jpg" alt="Lopez, Janine Nicaeela A.">
+                <h4>Lopez, Janine Nicaeela A.</h4>
+                <div class="role">Web Developer</div>
+                <div class="quote">"Learn, build, and grow together."</div>
+            </div>
+            <div class="team-card">
+                <img src="Images/Herrera, Cedrick Nicole R. (240108938).jpg" alt="Herrera, Cedrick Nicole R.">
+                <h4>Herrera, Cedrick Nicole R.</h4>
+                <div class="role">Web Developer</div>
+                <div class="quote">"Learn, Adapt, Succeed."</div>
+            </div>
+            <div class="team-card">
+                <img src="Images/Bermillo, Shayne S. (240108971).jpg" alt="Bermillo, Shayne S.">
+                <h4>Bermillo, Shayne S.</h4>
+                <div class="role">Web Developer</div>
+                <div class="quote">"Growth through challenges."</div>
+            </div>
+            <div class="team-card">
+                <img src="Images/Marrera, Cholo.jpg" alt="Marrera, Cholo M.">
+                <h4>Marrera, Cholo M.</h4>
+                <div class="role">Web Developer</div>
+                <div class="quote">"Bakit pa ako kakain ng gulay
+                    kung binusog mo na ang aking buhay."</div>
+            </div>
+        </div>
+    </section>
+    <div class="info-section">
+        <p>The information on the website is provided by BSIT First Year Instructor Leila Romar P. Bellen and is regulated under Section 12021.</p>
+        <p>We worked together to build this platform using our knowledge of web development and our passion for helping fellow students. We hope this site supports your academic journey and makes learning easier and more engaging.</p>
+    </div>
+    <div class="contact-section">
+        <h5>Contact Us</h5>
+        <p>Have questions, suggestions, or feedback? We'd love to hear from you!</p>
+        <p>Email:<br>
+            <a href="https://mail.google.com/mail/u/0/#inbox?compose=jrjtXSpJMnSlJhzVqRLFtGzrpvgtnzVgspcHwjzhzhgNrVCSWmBdkgXZTDcZptSKvNQrNVKr">marktorno555@gmail.com</a></p>
+            <a href="https://mail.google.com/mail/u/1/#inbox?compose=CllgCJqSwKXHLXHBFMpbDhHzzlBKSxZHsQFvFMVVfKWScptpWTJZCQkMVdtFjkQWRnXktCRrsnB">clarencepascosantiago16@gmail.com</a>
+        </p>
+        <p>You can also reach out to any of the developers directly if you're a fellow student from Bestlink College of the Philippines – BSIT 12021 section. We're here to help and improve this website for you!</p>
+    </div>
+    <footer>
+        <p>&copy; 2025 KoFiSos. All rights reserved.</p>
+    </footer>
+</body>
+</html>

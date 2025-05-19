@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 13</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules1.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>PANITIKAN SA PANAHON NG HAPON</h1>
+                <div class="week-badge">WEEK 13</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Noong panahon ng pananakop ng mga Hapon sa Pilipinas, nakilala ito bilang "Gintong Panahon" ng maikling kuwento at dula sa wikang Tagalog. Ang mga Hapon ay nagbawal sa paggamit ng Ingles, na siyang nakasanayan mula sa panahon ng mga Amerikano, kaya't higit na naging prominente ang panitikang Pilipino sa wikang Tagalog.</p>
+                </div>
+
+                <h2>MGA KATANGIAN NG PANITIKAN NOONG PANAHON NG HAPON</h2>
+                
+                <div class="theory-section">
+                    <h4>Pag-unlad ng Maikling Kuwento</h4>
+                    <ul>
+                        <li>Itinuturing na pinakamaunlad na anyo ng panitikan sa panahong ito.</li>
+                        <li>Sa ilalim ng Surian ng Wikang Pambansa, pinili ang pinakamahusay na mga kuwento na sumasalamin sa karanasan ng Pilipino.</li>
+                    </ul>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Haiku at Tanaga</h4>
+                    <p>Haiku: Isang maikling tula na may tatlong taludtod at sumusunod sa sukat na 5-7-5 na pantig. Bagaman maikli, dapat itong may malalim na kahulugan at masaklaw na kaisipan.</p>
+                    <p>Tanaga: Binuhay ni Ildefonso Santos, ang tanaga ay isang uri ng tula na may apat na taludtod, bawat isa ay may pitong pantig. May sukat at tugma ito at mayaman sa talinghaga.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Dula</h4>
+                    <p>Bunga ng kahirapan sa panahon ng digmaan, naging tanyag ang mga dula bilang libangan ng mga tao. Maraming artista mula sa pelikula ang lumipat sa pagtatanghal sa mga teatro, na siyang nagbigay-buhay sa sining ng dula sa panahong ito.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Nobela</h4>
+                    <p>Kaunti lamang ang naisulat na nobela dahil sa krisis sa papel at kahirapan sa pamumuhay. Dahil dito, higit na tumutok ang mga manunulat sa maikling kuwento at tula.</p>
+                </div>
+
+                <h2>MGA TEMA NG PANITIKAN NOONG PANAHON NG HAPON</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Buhay sa lalawigan, pagsasaka, at pangingisda.</li>
+                        <li>Pagiging masipag, na bahagi ng kulturang Hapon.</li>
+                        <li>Makabayan at pagmamahal sa kalikasan.</li>
+                        <li>Pananampalataya at sining.</li>
+                        <li>Pagiging tapat at may dangal sa sarili at sa bansa.</li>
+                    </ul>
+                </div>
+
+                <h2>PAGPAPAUNLAD NG PANITIKANG PILIPINO</h2>
+
+                <div class="theory-section">
+                    <p>Sa panahong ito, lumakas ang paggamit ng mga katutubong wika sa panitikan. Ipinagbawal ng mga Hapon ang mga aklat na nasa Ingles at sinunog ang mga ito upang masigurong hindi mababahiran ng kanluraning impluwensya ang panitikang Pilipino. Ang Liwayway, isang lingguhang babasahin, ay patuloy na lumabas sa ilalim ng pangangasiwa ni Kin-Ichi Ishikawa, isang Hapones.</p>
+                </div>
+
+                <h2>TANYAG NA MANUNULAT SA PANAHON NG HAPON</h2>
+
+                <div class="theory-section">
+                    <h4>Liwayway A. Arceo</h4>
+                    <p>Kauna-unahang Pilipino na nagsulat ng soap opera sa radyo, nakasulat ng 3000 nobela, 2000 maikling kuwento, at 36 tomo ng iskrip. Tumanggap siya ng Carlos Palanca Award noong 1962.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Francisco Soc Rodrigo</h4>
+                    <p>Kilala sa kanyang dula na "Sa Pula, Sa Puti." Siya ay naging senador at kasapi sa pagbabalangkas ng Konstitusyon noong 1987 sa ilalim ng pamumuno ni Pangulong Cory Aquino.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Soslit/WEEK 13 SOSLIT.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

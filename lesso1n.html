@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filipino sa Iba't Ibang Disiplina</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;   
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;  
+                margin-left: 0;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        /* Existing styles */
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .multilingual-countries {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .country-card {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #1a237e;
+        }
+
+        .country-card h4 {
+            color: #1a237e;
+            margin-top: 0;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/Logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>ANG FILIPINO BILANG WIKANG PAMBANSA</h1>
+                <div class="week-badge">WEEK 1</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Batay sa awitin na inawait kanina, ano ang kinalaman nito sa pagkakaroon ng maraming wika sa bansang Pilipinas? Ayon kay Roberto T. Anonuevo, Direktor –Heneral ng Komisyaon sa Wikang Filipino (2018) Napatunayan ng (wikang) Filipino na kaya itong tanggapin sa iba't ibang rehiyon at gawing katuwang ng wika ng rehiyon dahil ang komposisyon ng Filipino ay hindi nalalayo sa naturang wika. Ayon kay Dr. Ernesto Constantino at Pamela Costantino mayroong 100 wika sa Pilipinas.</p>
+                </div>
+
+                <h2>4.2 Makilala ang mga bansang Multilingual din ang gamit sa Edukasyon</h2>
+                <h3>Mga bansang Multilingual</h3>
+
+                <div class="multilingual-countries">
+                    <div class="country-card">
+                        <h4>ARUBA</h4>
+                        <p>Isa sa mga bansang bumubuo ng kaharian ng Netherlands at malapit sa Venezuela</p>
+                        <p><strong>Wika:</strong> Papianmento</p>
+                        <p>Wikang Umusbong mula sa portures, Kastila, Dutch at Ingles</p>
+                    </div>
+
+                    <div class="country-card">
+                        <h4>East Timor (Timor-Leste)</h4>
+                        <p><strong>Wika:</strong> Tetum</p>
+                        <p>May kabisahan din sa wikang Portuges at Ingles</p>
+                    </div>
+
+                    <div class="country-card">
+                        <h4>India</h4>
+                        <p><strong>Wika:</strong> Hindi at English ang opisyal na wika</p>
+                    </div>
+
+                    <div class="country-card">
+                        <h4>Luxembourg</h4>
+                        <p>Luxembourish ang wika ng maliit na bansa</p>
+                        <p>(Hiram na salita mula sa salitang pranses ang Luxembourish)</p>
+                    </div>
+
+                    <div class="country-card">
+                        <h4>MALAYSIA</h4>
+                        <p><strong>Wika:</strong></p>
+                        <ul>
+                            <li>Malay (opisyal na wika)</li>
+                            <li>Malay at English ang parehong ginagamit sa panturo</li>
+                            <li>Mandarin (tinuturo sa mga may lahing tsino)</li>
+                        </ul>
+                    </div>
+
+                    <div class="country-card">
+                        <h4>Mauritius</h4>
+                        <p>Bansang tinuturing na bahagi ng Africa.</p>
+                        <p><strong>Wika:</strong></p>
+                        <ul>
+                            <li>English at Pranses (wika ng paaralan)</li>
+                            <li>Mauritian Chreole (Wikang umusbong sa Pranses ngunit hindi naiintindihan ng mga Pranses)</li>
+                        </ul>
+                    </div>
+
+                    <div class="country-card">
+                        <h4>Singapore</h4>
+                        <p><strong>Wika:</strong></p>
+                        <ul>
+                            <li>Mandarin Chinese, Malay at Tamil (opisyal na wika ng Singapore)</li>
+                            <li>English (Lingua Franca)</li>
+                        </ul>
+                    </div>
+
+                    <div class="country-card">
+                        <h4>South Africa</h4>
+                        <p>Labing isa (11) ang opisyal na wika.</p>
+                        <ul>
+                            <li>English (Lingua Franca)</li>
+                            <li>Afrikaan (wikang gamit sa kanlurang kontinente)</li>
+                        </ul>
+                    </div>
+
+                    <div class="country-card">
+                        <h4>Suriname</h4>
+                        <p>Hilagang America</p>
+                        <p><strong>Wika:</strong></p>
+                        <ul>
+                            <li>Dutch (Paaralan, kalakaran at midya)</li>
+                            <li>Sranan Tongo (Sranan) (wika na may impluwensyang dutch)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>1.3 Maunawaan ang Mother-Tongue-Based Multilingual Education</h2>
+                <h3>Hamon ng Mother-Tongue-Based Multilingual Education</h3>
+                
+                <div class="highlight-box">
+                    <p>Habang nililinang at pinauunlad ang Filipino, nang naluklok na Pansamantalang Punong Komisyoner ng KWF si Dr. Ricardo Ma. Duran Nolasco ay naging direksiyon ng ahensiya ang pagtangkilik sa multilingguwalismo. Katuwang ang Kongresista o Representatibo na si Kgg. at abugado magtanggol Gunigundo ng Valenzuela.</p>
+                    
+                    <p>Ang Orihinal na House bill blg. 4719 na humihikayat na ipagamit ang unang isinumite sa Senado noong 2008 na ang paksa ay ang pagpapagamit sa unang wikang bilang midyum ng pagtuturo sa mga basikong edukasyon. Kinatigan ito ng kagawaran ng Edukasyon at isport sa pamamagitan ng paglalabas ng Ordinansa Blg. 74 na nagtatalakay sa pagsasainstitusyon ng paggamit ng unang wika ng mga mag-aaral.</p>
+                    
+                    <p>Napakalaki ng naging epekto ng pangsasakatuparan ng Mother-Tonguebased, Multilinggual Education o MTB-MLE. Isa iton sa mga naging bagong direksyon sa pag-iimplementa ng K to 12.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="download-section">
+        <a href="Fildis/week 1 fildis.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

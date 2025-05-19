@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 17</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules1.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>WORKSYAP SA PAGSULAT NG AKDANG PAMPANITIKAN</h1>
+                <div class="week-badge">WEEK 17</div>
+            </div>
+
+            <div class="lesson-content">
+
+                <h2>Panimula ng Worksyap</h2>
+                
+                <div class="theory-section">
+                    <p><strong>Layunin:</strong> Bigyang-daan ang mga kalahok na mapalawak at mapalalim ang kanilang kakayahan sa pagsulat ng akdang pampanitikan sa pamamagitan ng pagsusulat, rebisyon, at pagpasa ng output.</p>
+                    <p><strong>Tagal ng Worksyap:</strong> 1–2 araw, depende sa oras na inilaan at sa bilang ng mga kalahok.</p>
+                </div>
+
+                <h2>Bahagi ng Worksyap</h2>
+
+                <div class="theory-section">
+                    <h4>A. Pagsulat ng Draft</h4>
+                    <ul>
+                        <li>Tula: Maaari itong mga tula tungkol sa sarili, pamilya, kultura, o karanasan.</li>
+                        <li>Sanaysay: Pumili ng isang paksang mahalaga at malapit sa puso ng may-akda, halimbawa'y karanasan, opinyon, o mga natutunan sa buhay.</li>
+                        <li>Maikling Kwento: Isalaysay ang isang makabuluhang kuwento na may malinaw na banghay, tauhan, at aral.</li>
+                    </ul>
+                    <p><strong>Tip:</strong> Huwag munang masyadong alalahanin ang mga detalye ng istruktura o pagsasaayos sa unang draft. Mahalaga ang pagsusulat ng ideya at pagsasaad ng damdamin.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>B. Pagrebisa</h4>
+                    <ul>
+                        <li>Istruktura: Siguraduhing maayos ang pagkakasunod-sunod ng mga ideya, linya, o talata.</li>
+                        <li>Wika: Pagsikapang gawing malinaw at malikhain ang paggamit ng salita. Iwasan ang paulit-ulit na ideya.</li>
+                        <li>Paggamit ng Imahe: Gumamit ng makukulay na paglalarawan sa pagsulat ng tula o kwento upang mas madali itong ma-imagine ng mambabasa.</li>
+                        <li>Tulong mula sa Kapwa Kalahok: Bigyan at tumanggap ng puna mula sa iba upang mapabuti ang akda. Hilingin ang opinyon ng mga kasama sa worksyap.</li>
+                    </ul>
+                </div>
+
+                <div class="theory-section">
+                    <h4>C. Pagsusuri at Pagpasa ng Output</h4>
+                    <ul>
+                        <li>Pagsusuri ng Akda: Bigyang pansin ang tugma, simbolismo, o tema sa mga tula; ang lohika at detalye sa sanaysay; at ang banghay at tauhan sa maikling kwento.</li>
+                        <li>Pagpasa ng Awtoradong Output: Pagkatapos ng pagsusuri, ihanda ang panghuling bersyon ng akda at isumite sa facilitator ng worksyap o sa grupo.</li>
+                    </ul>
+                </div>
+
+                <h2>Feedback Session</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Pagsusuri ng Output: Ang bawat kalahok ay magkakaroon ng pagkakataong makatanggap ng feedback mula sa tagapagsanay o ibang mga kalahok.</li>
+                        <li>Tanggapin ang Kritika: Magandang pagkakataon ito upang higit pang mapabuti ang kanilang sining sa pagsulat.</li>
+                    </ul>
+                </div>
+
+                <h2>Pagtatapos ng Worksyap</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Pagninilay: Magsagawa ng reflection session para malaman kung ano ang natutunan ng bawat kalahok at kung paano nila maisasabuhay ang kanilang mga natutunan.</li>
+                        <li>Plano sa Hinaharap: Hikayatin ang bawat isa na magpatuloy sa pagsusulat, maging mas masipag sa paglikha, at magtulungan bilang mga manunulat.</li>
+                    </ul>
+                </div>
+
+                <h2>RUBRICS SA PAGSULAT NG TULA</h2>
+
+                <img src="Images/Rubrics-Soslit.png" alt="Rubrics-Soslit" style="width: 40%; height: auto;">
+
+                <h2>RUBRICS SA PAGSULAT NG TULANG MAY MALAYANG TALUDTURAN</h2>
+
+                <img src="Images/Rubrics-Soslit1.png" alt="Rubrics-Soslit" style="width: 40%; height: auto;">
+
+
+                <h2>RUBRIC AT GABAY SA PAGSULAT NG MAIKLING KWENTO</h2>
+                <div class="theory-section">
+                    <p>Sa pagsulat ng maikling kwento, kailangang isaalang-alang ang mga elementong angkop, bahagi at kung anong uri ng kwento nito.</p>
+                    <p>Ano ang kahalagahan ng maikling kwento? Nailalahad mo ang iyong sariling kaisipan, kuro-kuro at ideya sa isang pangyayari.</p>
+                    <p>Ang mga uri ng maikling kwento ay kwento ng tauhan, kwento ng katutubong kulay, kwentong bayan, kwento ng kababalaghan, kwento ng katatakutan, kwento ng madulang pangyayari, kwento ng sikolohiko, kwento ng pakikipagsapalaran, kwento ng katatawanan at kwento ng pag-ibig.</p>
+                </div>
+
+                <h2>KONKLUSYON</h2>
+                <div class="theory-section">
+                    
+                    <p>Ang maikling kwento ay nababasa sa isang upuan at sandaling panahon lamang ang ginugugol, agad itong matutunghayan, mababasa at kapupulutan ng aral, pananabik at aliw. Akma rin ito sa mga taong laging nagmamadali at halos walang panahon para sa pagbabasa ng matagalan.</p>
+                    <p>Ito ay naglalarawan ng isang pangunahin at mahalagang tauhan, may kapayakan at kakaunti ang mga tauhan, nagpapamalas ng isang mahalagang tagpo at nagtataglay ng mabilis na pagtaas ng kawilihan tungo sa wakas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Soslit/MODULE 17_SOSLIT.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

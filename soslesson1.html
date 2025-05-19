@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules1.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>ELECGE 4 SOSYEDAD AT LITERATURA / PANITIKANG PANLIPUNAN</h1>
+                <div class="week-badge">WEEK 1</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Sa modyul na ito ay tatalakayin ang mga batayang kaalaman sa panunuring pampanitikan. Lisa-isahin ang layunin, uri at sangay nito na makapagbibigay ng malinaw na konsepto sa kahalagahan ng panunuring pampanitikan.</p>
+                </div>
+
+                <h2>Mga Inaasahang Resulta ng Pagkatuto</h2>
+                
+                <div class="theory-section">
+                    <ul>
+                        <li>Natutukoy ang kahulugan ng Akdang Pampanitikan, mga uri nito, Panunuring Pampanitikan, at Pagsusuring Pampanitikan.</li>
+                        <li>Naiisa-isa ang uri o mga sangay ng pagsusuring pampanitikan at ang layunin nito.</li>
+                        <li>Nauunawaan ang kahalagahan ng panunuring pampanitikan.</li>
+                        <li>Nakapagsuri ng isang akdang binasa gamit ang pormat ng balangkas ng suring basa.</li>
+                    </ul>
+                </div>
+
+                <h2>Buod ng Talakayan</h2>
+
+                <div class="theory-section">
+                    <h4>Modyul 1: Batayang Kaalaman sa Panunuring Pampanitikan</h4>
+                    <ul>
+                        <li>Akdang Pampanitikan</li>
+                        <li>Panunuring Pampanitikan</li>
+                        <li>Pagsusuring Pampanitikan</li>
+                        <li>Sangay at uri ng Pagsusuring Pampanitikan</li>
+                        <li>Mga Simulain sa Panunuring Pampanitikan</li>
+                        <li>Kahalagahan ng Panunuring Pampanitikan</li>
+                        <li>Panunuri o Suring Basa</li>
+                    </ul>
+                </div>
+
+                <h2>Akdang Pampanitikan</h2>
+
+                <div class="theory-section">
+                    <p>Ang Panitikan ay nagmula sa salitang "pang-titik" na ang ibig sabihin ay literature o mga akdang nasusulat. Ito ay naglalaman ng mga akdang may kinalaman sa pang-araw-araw na buhay, mga kathang-isip, pag-ibig, kasaysayan, at iba pa.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Mga Uri ng Akdang Pampanitikan</h4>
+                    <ul>
+                        <li><strong>Talambuhay</strong> - Akdang pampanitikan kung saan inilalarawan ang buhay ng pangunahing tauhan.</li>
+                        <li><strong>Tula</strong> - Naglalaman ng makahulugang paksa, may sukat at tugma.</li>
+                        <li><strong>Dula</strong> - Itinatanghal sa entablado sa harap ng maraming manonood.</li>
+                        <li><strong>Talumpati</strong> - Akda na itinatanghal sa entablado gamit ang pagsasalita.</li>
+                        <li><strong>Alamat</strong> - Akda tungkol sa pinagmulan ng mga bagay-bagay.</li>
+                        <li><strong>Maikling Kuwento</strong> - Akdang may bilang na tauhan at pangyayari.</li>
+                        <li><strong>Epiko</strong> - Mga tulang salaysay tungkol sa mga bayani.</li>
+                        <li><strong>Pabula</strong> - Mga kuwento kung saan ang mga tauhan ay mga hayop.</li>
+                        <li><strong>Nobela</strong> - Naglalaman ng mga paksang panlipunan.</li>
+                        <li><strong>Salawikain</strong> - Maikling pangingusap na naglalaman ng makahulugang paksa.</li>
+                        <li><strong>Parabula</strong> - Karaniwang nagmula sa Bibliya.</li>
+                        <li><strong>Mito</strong> - Mga kuwento tungkol sa mga Diyos at Diyosa.</li>
+                        <li><strong>Kwentong-bayan</strong> - Karaniwang kuwento tungkol sa mga kaugalian.</li>
+                        <li><strong>Anekdota</strong> - Pagsasalaysay batay sa tunay na pangyayari.</li>
+                    </ul>
+                </div>
+
+                <h2>Panunuring Pampanitikan</h2>
+
+                <div class="theory-section">
+                    <p>Ang Panunuring Pampanitikan ay isang malalim na paghihimay sa mga akdang pampanitikan sa pamamagitan ng paglalapat ng iba't ibang dulog ng kritisismo para sa mabisang pag-unawa sa malikhaing manunulat at katha.</p>
+                </div>
+
+                <h2>Pagsusuring Pampanitikan</h2>
+
+                <div class="theory-section">
+                    <p>Ang pagsusuring pampanitikan ay pag-aaral, pagtalakay, pagsusuri, at pagpapaliwanag ng panitikan.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Mga Uri ng Pagdulog</h4>
+                    <ul>
+                        <li><strong>Pormalistiko</strong> - Ang pagtuklas at pagpapaliwanag sa anyo ng akda.</li>
+                        <li><strong>Moralistiko</strong> - Layunin na ilahad ang iba't ibang pamantayang sumusukat sa moralidad.</li>
+                        <li><strong>Sikolohikal</strong> - Makikita ang takbo ng isip ng may-akda.</li>
+                        <li><strong>Sosyolohikal</strong> - Ipakita ang kalagayan at suliraning panlipunan.</li>
+                    </ul>
+                </div>
+
+                <h2>Panunuri o Suring Basa</h2>
+
+                <div class="theory-section">
+                    <p>Ang panunuri ay isang uri ng pagtalakay na nagbibigay buhay at diwa sa isang likhang sining. Ang suring basa ay isang anyo ng pagsusuri o rebyu ng binasang teksto o may-akda.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Balangkas o Pormat ng Suring Basa</h4>
+                    <ol>
+                        <li>Pamagat, May-akda, Genre</li>
+                        <li>Buod (kung maikling kuwento, sanaysay, nobela)</li>
+                        <li>Paksa</li>
+                        <li>Bisa (sa isip, sa damdamin)</li>
+                        <li>Mensahe</li>
+                        <li>Teoryang Ginamit</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Soslit/WEEK 1 SOSLIT.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

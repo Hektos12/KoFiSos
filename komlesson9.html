@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 9</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules2.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>MGA NAPAPANAHONG ISYUNG LOKAL AT NASYONAL</h1>
+                <div class="week-badge">WEEK 9</div>
+            </div>
+
+            <div class="lesson-content">
+                <h2>Korapsyon</h2>
+                
+                <div class="theory-section">
+                    <p>Ang korapsyon o katiwalian ay tumutukoy sa kawalan ng integridad at katapatan, partikular sa mga opisyal ng pamahalaan. Karaniwan, nangyayari ito kapag ang isang opisyal ay ginagamit ang kanyang posisyon para sa personal na kapakinabangan, na nagiging sanhi ng hindi makatarungang sistema at pagka-bansot ng mga serbisyo para sa mamamayan.</p>
+                </div>
+
+                <h2>Mga Kasong Kilalang Isyu ng Korapsyon</h2>
+
+                <div class="theory-section">
+                    <h4>Hello Garci Tape (2005)</h4>
+                    <p>Isang isyu na nagpapakita ng umano'y pandaraya sa halalan, kung saan ang pangalan ni dating Comelec Commissioner Virgilio Garcillano ay nauugnay sa isang lehitimong audio recording na nagsasangkot ng ilang mataas na opisyal ng gobyerno.</p>
+
+                    <h4>Pork Barrel Scam (2013)</h4>
+                    <p>Ang kontrobersyal na isyu ng pork barrel na nagbigay tuwa sa mga politiko at kanilang mga kaalyado. Nakita dito ang isang malawakang sistemang katiwalian sa pamamagitan ng mga pekeng NGO at pekeng proyekto para sa mga pondo ng mambabatas.</p>
+
+                    <h4>NBN-ZTE Deal (2007)</h4>
+                    <p>Isang proyekto na pinondohan ng gobyerno ng Pilipinas para sa isang national broadband network. Nagkaroon ng mga alegasyong nagkaroon ng pansariling pakinabang ang mga opisyal mula sa dayuhang kontrata.</p>
+
+                    <h4>Malampaya Fund Scam</h4>
+                    <p>Isang isyu na nagsasangkot ng maling paggamit ng pondo mula sa Malampaya natural gas project, na sinasabing inilaan para sa mga proyekto sa agrikultura at mga proyektong pambayan.</p>
+                </div>
+
+                <h2>Kondisyon ng Korapsyon sa Pilipinas</h2>
+
+                <div class="theory-section">
+                    <p>Ayon sa Transparency International, noong 2018, ang Pilipinas ay nasa ika-111 na pwesto mula sa 180 bansa sa Corruption Perceptions Index (CPI) na may score na 34, na nangangahulugang patuloy ang lumalalang korapsyon sa bansa.</p>
+                    <p>Sa kabila ng mga batas tulad ng R.A. No. 3019 (Anti-Graft and Corrupt Practices Act) at Revised Penal Code, mahirap alisin ang ganitong kultura sa gobyerno. Gayundin, may mga ahensya tulad ng R.A. No. 6770 (Ombudsman) at P.D. No. 1486 (special courts) na nagsusulong ng laban sa korapsyon.</p>
+                </div>
+
+                <h2>Iba't Ibang Uri ng Korapsyon</h2>
+
+                <div class="theory-section">
+                    <h4>Nepotismo</h4>
+                    <p>Ang pagbibigay ng pabor o pagkakataon sa mga kamag-anak upang manungkulan o magtrabaho sa gobyerno kahit na hindi ito kwalipikado.</p>
+
+                    <h4>Kronyismo</h4>
+                    <p>Ang pagtatatalaga ng mga kaibigan at malalapit na tao sa mga posisyon sa gobyerno upang magkaroon ng personal na kapakinabangan.</p>
+
+                    <h4>Bribery (Panunuhol)</h4>
+                    <p>Ang pagbibigay o pagtanggap ng suhol upang mapabilis ang mga proseso o transaksyon sa gobyerno. Kilala rin ang mga taong nagpapasuhol bilang mga "fixer."</p>
+
+                    <h4>Kickback</h4>
+                    <p>Ang paggamit ng pondo o budget para sa proyekto ng gobyerno, ngunit ang mga pondo ay muling kinokolekta ng mga taong may interes sa proyekto.</p>
+
+                    <h4>Fraud (Pandadaya)</h4>
+                    <p>Ang pagkakaroon ng manipulasyon, pandaraya, o paglilinlang sa mga transaksyon ng gobyerno.</p>
+
+                    <h4>Plunder</h4>
+                    <p>Ang sistematikong pagnanakaw ng yaman mula sa gobyerno, gamit ang kanilang posisyon o kapangyarihan, at paggamit ng mga pampublikong pondo sa maling paraan.</p>
+                </div>
+
+                <h2>Mga Bayani ng Pilipinas</h2>
+
+                <div class="theory-section">
+                    <h4>Dr. Jose Rizal</h4>
+                    <p>Si Dr. Jose Rizal ay isang simbolo ng laban para sa kalayaan at karapatan ng mga Pilipino. Siya ay kinilala bilang Pambansang Bayani dahil sa kanyang mga isinagawang hakbang upang muling buhayin ang diwa ng pagka-Pilipino at ang paglaban sa mga mananakop na Kastila.</p>
+                    <p>Ang kanyang mga akda, tulad ng Noli Me Tangere at El Filibusterismo, ay nagbigay ng bagong pananaw sa mga Pilipino at naging instrumento upang magising ang kanilang malasakit sa bayan. Ang kanyang pagkamatay sa Bagumbayan ay isang sakripisyo upang ipaglaban ang kalayaan at katarungan ng mga Pilipino.</p>
+
+                    <h4>Esteban A. De Ocampo</h4>
+                    <p>Ayon kay Esteban A. De Ocampo, walang isang tiyak na tao o grupo ang nagdeklara kay Rizal bilang numero unong bayani ng Pilipinas. Ang pagkilala kay Rizal ay isang proseso ng pagsasama-sama ng mga Pilipino at maging mga banyaga na nagnanais itanghal siya bilang pinakamahalagang bayani ng bansa.</p>
+
+                    <h4>Melchora Aquino (Tandang Sora)</h4>
+                    <p>Si Melchora Aquino, na kilala bilang Tandang Sora, ay tinaguriang Ina ng Katipunan. Siya ay isang matapang na babae na ipinakita ang kanyang pagmamahal sa bayan sa pamamagitan ng kanyang pagtulong at pangangalaga sa mga Katipunero sa panahon ng Rebolusyon.</p>
+                    <p>Tandang Sora ay hindi lamang isang tagapag-alaga ng mga sugatang mandirigma kundi isang simbolo ng matibay na pagtutol at pagmamahal sa bayan sa gitna ng digmaan.</p>
+                </div>
+
+                <h2>Pagsusuri ng Mga Isyu</h2>
+
+                <div class="theory-section">
+                    <p>Ang mga isyung ito—korapsyon, bayani, at pagsusuri sa mga kontemporaryong isyu—ay nagsisilbing gabay sa ating pag-unawa sa kasalukuyang kalagayan ng ating bansa.</p>
+                    <p>Ang patuloy na paglaban sa korapsyon ay nangangailangan ng mas matinding pagtingin at malasakit mula sa bawat isa, lalo na ang mga nasa posisyon ng kapangyarihan.</p>
+                    <p>Ang pagpapahalaga sa mga bayani ng ating bansa ay hindi lamang sa pamamagitan ng mga pag-alala, kundi sa pag-papakita ng aktibong pakikilahok sa pagpapabuti ng ating lipunan at paglaban para sa tama.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Komfil/WEEK 9 KOMFIL.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

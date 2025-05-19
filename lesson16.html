@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mga Metodolohiya sa Pananaliksik Panlipunan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                margin-left: 0;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .methodology-card {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #1a237e;
+            margin-bottom: 1.5rem;
+        }
+
+        .methodology-card h4 {
+            color: #1a237e;
+            margin-top: 0;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/Logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>MGA METODOLOHIYA SA PANANALIKSIK PANLIPUNAN</h1>
+                <div class="week-badge">WEEK 16</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Ang araling ito ay naglalayong maintindihan ang iba't ibang pamamaraan o metodolohiya sa pananaliksik panlipunan.</p>
+                </div>
+
+                <div class="methodology-card">
+                    <h4>Mga Uri ng Pananaliksik Panlipunan</h4>
+                    
+                    <h5>1. Case Study</h5>
+                    <p>Malalim na pag-aaral ng isang kaso; maaaring teoritikal, interpretatibo, atbp.</p>
+
+                    <h5>2. Etnograpiya</h5>
+                    <p>Pag-aaral ng kultura, ritwal at gawi ng mga grupo.</p>
+
+                    <h5>3. Penomenolohiya</h5>
+                    <p>Pagsusuri sa makabuluhang karanasan ng tao.</p>
+
+                    <h5>4. Analisis ng Nilalaman at Diskurso</h5>
+                    <p>Pag-aaral sa gamit ng wika sa mga teksto at dokumento.</p>
+                </div>
+
+                <div class="methodology-card">
+                    <h4>Iba pang Metodo sa Pananaliksik</h4>
+                    
+                    <h5>1. Impact Assessment</h5>
+                    <p>Pagsusuri sa epekto ng proyekto o aktibidad ng organisasyon.</p>
+                    <ul>
+                        <li>Panloob: sistema, estratehiya, komunikasyon</li>
+                        <li>Panlabas: epekto sa benepisyaryo, donor, publiko</li>
+                    </ul>
+
+                    <h5>2. SWOT Analysis</h5>
+                    <p>Pagsusuri sa kalakasan, kahinaan, oportunidad at panganib ng isang organisasyon.</p>
+                    <ul>
+                        <li>Internal: pinansyal, pisikal, tao, software</li>
+                        <li>External: panlabas na puwersa/panganib</li>
+                    </ul>
+                </div>
+
+                <div class="methodology-card">
+                    <h4>Praktikal na Aplikasyon at Pagpapaunlad ng Metodolohiya</h4>
+                    
+                    <ul>
+                        <li><strong>Historikal na Analisis</strong> – Pag-aaral ng kasaysayan sa linear na pananaw.</li>
+                        <li><strong>Kasaysayang Pasalita</strong> – Pagsasalaysay ng karanasan mula sa mismong tagapagbahagi.</li>
+                        <li><strong>Grounded Theory</strong> – Pagbuo ng teorya mula sa aktwal na datos.</li>
+                        <li><strong>Pagmamapang Kultural</strong> – Pagpreserba at pagsusuri ng pamanang kultura.</li>
+                        <li><strong>Holistikong Pananaliksik</strong> – Kabuuang pagtingin sa penomenon.</li>
+                        <li><strong>Feministang Pananaliksik</strong> – Pananaliksik batay sa karanasan ng kababaihan at layuning itaguyod ang pagkakapantay-pantay.</li>
+                        <li><strong>Pagbuo ng Teorya</strong> – Paglikha ng bagong konsepto o modelo.</li>
+                        <li><strong>Diplomatiko</strong> – Pagsusuri ng dokumentong legal o historikal.</li>
+                        <li><strong>Arkival na Pananaliksik</strong> – Pagsusuri ng dokumento mula sa mga rekord at arkibo.</li>
+                        <li><strong>Pagdidisenyo ng Sistema at Prototyping</strong> – Karaniwang ginagamit sa inhenyeriya, kasama ang pagbuo ng modelo at teknolohikal na sistema.</li>
+                        <li><strong>Etnograpikong Dulog sa Arkibo</strong> – Pagsasama ng etnograpiya at arkibal na pananaliksik para sa mas malalim na konteksto.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Fildis/WEEK 16 FILDIS.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

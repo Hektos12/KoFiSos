@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 8</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules2.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>KOMUNIKASYONG DI-BERBAL</h1>
+                <div class="week-badge">WEEK 8</div>
+            </div>
+
+            <div class="lesson-content">
+                <h2>Kahulugan ng Komunikasyong Di-Berbal</h2>
+                <div class="highlight-box">
+                    <ul>
+                        <li>Hindi gumagamit ng salita</li>
+                        <li>Gumagamit ng kilos, galaw, ekspresyon, simbolo, kulay</li>
+                        <li>Naipapahayag ang mensahe kahit walang sinasabi</li>
+                    </ul>
+                </div>
+
+                <h2>Mga Uri ng Komunikasyong Di-Berbal</h2>
+                
+                <div class="theory-section">
+                    <ul>
+                        <li>Kinesika</li>
+                        <li>Proksemika</li>
+                        <li>Pandama (Haptics)</li>
+                        <li>Paralanguage</li>
+                        <li>Katahimikan</li>
+                        <li>Simbolo (Iconics)</li>
+                        <li>Kapaligiran</li>
+                        <li>Kulay</li>
+                        <li>Bagay</li>
+                        <li>Ekspresyong Lokal</li>
+                    </ul>
+                </div>
+
+                <h2>Kinesika</h2>
+
+                <div class="theory-section">
+                    <p>Galaw ng katawan at ekspresyon ng mukha</p>
+                    <h4>Halimbawa:</h4>
+                    <p>Cellphone habang may kausap → hindi nakikinig</p>
+
+                    <h4>Galaw ng Katawan sa Kinesika:</h4>
+                    <ul>
+                        <li>Ekspresyon ng mukha → saya, lungkot, galit</li>
+                        <li>Galaw ng mata → atensyon, katapatan</li>
+                        <li>Kumpas ng kamay → pagsang-ayon, pagtutol</li>
+                        <li>Tindig o postura → tiwala, respeto, kayabangan</li>
+                    </ul>
+                </div>
+
+                <h2>Proksemika (Proxemics)</h2>
+
+                <div class="theory-section">
+                    <p>Distansya habang nakikipag-usap</p>
+                    <h4>Halimbawa:</h4>
+                    <ul>
+                        <li>Malayo kung pormal</li>
+                        <li>Malapit kung matalik o mahal sa buhay</li>
+                    </ul>
+                </div>
+
+                <h2>Pandama o Paghawak (Haptics)</h2>
+
+                <div class="theory-section">
+                    <p>Pagpapahayag gamit ang hawak</p>
+                    <ul>
+                        <li>Pagtapik sa balikat → suporta</li>
+                        <li>Pagpisil sa palad → pag-unawa o damdamin</li>
+                    </ul>
+                </div>
+
+                <h2>Paralanguage</h2>
+
+                <div class="theory-section">
+                    <p>Tono, bilis ng salita, tunog</p>
+                    <ul>
+                        <li>Mabilis magsalita → excited o kinakabahan</li>
+                        <li>Mabagal magsalita → seryoso o nag-iisip</li>
+                    </ul>
+                </div>
+
+                <h2>Katahimikan</h2>
+
+                <div class="theory-section">
+                    <p>Walang sinasabi pero may kahulugan</p>
+                    <ul>
+                        <li>Pag-iisip</li>
+                        <li>Pagtanggi o hindi pagsang-ayon</li>
+                    </ul>
+                </div>
+
+                <h2>Simbolo (Iconics)</h2>
+
+                <div class="theory-section">
+                    <p>Larawan o imahe na may kahulugan</p>
+                </div>
+
+                <h2>Kapaligiran</h2>
+
+                <div class="theory-section">
+                    <p>Lugar ng komunikasyon</p>
+                    <h4>Halimbawa:</h4>
+                    <ul>
+                        <li>Conference room → seryoso</li>
+                        <li>Coffee shop → kaswal</li>
+                    </ul>
+                </div>
+
+                <h2>Kulay (Colorics)</h2>
+
+                <div class="theory-section">
+                    <p>Kulay na nagpapakita ng emosyon</p>
+                    <ul>
+                        <li>Black – kalungkutan</li>
+                        <li>White – kapayapaan</li>
+                    </ul>
+                </div>
+
+                <h2>Bagay (Objectics)</h2>
+
+                <div class="theory-section">
+                    <p>Paggamit ng kagamitan sa komunikasyon</p>
+                    <p>Halimbawa: Cellphone habang may kausap → hindi nakikinig</p>
+                </div>
+
+                <h2>Ekspresyong Lokal</h2>
+
+                <div class="theory-section">
+                    <p>Mga kaswal na lokal na wika o reaksyon</p>
+                    <ul>
+                        <li>Wala nang tapon!</li>
+                        <li>Hala, nakakaloka!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Komfil/Week 8 komfil.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

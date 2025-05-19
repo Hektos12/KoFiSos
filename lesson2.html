@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikang Filipino - Week 2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;    
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .nav-links {
+            list-style: none;
+        }
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;   
+                padding: 10px;
+                margin-left: 0;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/Logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <h1>WIKANG FILIPINO ANG WIKA NG BAYAN AT MAGING NG AKADEMYA</h1>
+                <div class="week-badge">WEEK 2</div>
+            </div>
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Ayon kay G. Eugene Y. Evasco ang anomang wika sa daigdig tulad ng wikang Filipino, ay nalilikha, nililinang, pinagyayaman at hindi lamang basta isinilang. Kaya naman masasabi ring ang wika ay may kakayahang makiangkop sa pagbabagong nagaganap sa lipunang kayang pinagsisilbihan<br><br>
+Malinaw na pinapahayag ni E. Evasco ang kalakasan ng wika pagdating sa usapin ng paggamit dito sa umiiral na buhay ng isang Bansa.<br><br>
+Sa Panahon ni dating pangulong Gloria Makapagal-Arroyo ginawa ang Pang-ehekutibo (E.O) 210 na nag-aanyas na ibalik ang Ingles bilang wikang panturo sa bansa.<br><br>
+Nilimitahan ang paggamit ng wikang Filipino at itinakda nalamang ito bilang wikang panturo sa mga asignaturang Filipino at araling Panlipunan<br><br>
+Sinusugan pa ito ng kongreso nang ipasa ang House Bill 4701<br>
+"Act Prescribing English as Medium of Instruction in the Philippines School"<br><br>
+Taliwas ito sa mga obsebasyon ng mga kritiko. Pinatunayan ito ng pag-aaral ng UNITED NATION (UN)<br>
+Ayon sa United Nation (UN)<br>
+The Organization is fully aware of the crucial importance of languages when seen against the many challenges that humanity will have to face over the next few decades.<br>
+Languages are indeed essential to the identity of group and individual and to their peaceful coexistence</p>
+                </div>
+                <h2>4.2 Makapagpahayag ng mga makabuluhang kaisipan sa pamamagitan ng tradisyonal at modernong midya</h2>
+                <p>Marami ang nanatiling buo ang paniniwala na ang mga umiiral na wika sa Pilipinas ay ang sagot sa mga suliranin ng Pambansang Edukasyon.<br><br>
+Ayon kay Dr. David San Juan ng konvinor ng Tanggol Wika at dalubguro sa Pamantasan ng De La Salle, ang Wikang Pambansa ang tanging wika ng mga kilusang panlipunan.<br><br>
+Ang Pagsilang ng Tanggol Wika<br>
+Sa inilabas na Memo ng CHED na CMO #20, Serye ng 2013 tahasang inaalis ang mga asignaturang sa wika, agham panlipunan at kasaysayan sa antas ng tersyaryo.<br><br>
+Naglabas si Dr. David San Juan ng isang Papel na may Pamagat na Alyansa ng Mga Tagapagtanggol bg Wikang Filipino/TANGGOL WIKA Internal na kwento, Mga Susing Argumento at Dokumento (2-14-2017)</p>
+                <ol>
+                    <ul>ARGUMENTO 1: WALANG MAKABULUHANG ARGUMENTO ANG MGA ANTI-FILIPINO – ANG KAMPONG TANGGAL WIKA – SA PAGPAPATANGGAL NG FILIPINO AT PANITIKAN</li>
+                    <ul>ARGUMENTO 2: DAPAT MAY FILIPINO AT PANITIKAN SA KOLEHIYO DAHIL ANG IBANG ASIGNATURA NA NASA JUNIOR AT/O SENIOR HIGH SCHOOL AY MAY KATUMBAS PA RIN SA KOLEHIYO</li>
+                    <ul>ARGUMENTO 3: ANG FILIPINO AY DISIPLINA, ASIGNATURA, BUKOD NA LARANGAN NG PAG-AARAL, AT HINDI SIMPLENG WIKANG PANTURO LAMANG</li>
+                    <ul>ARGUMENTO 4: PARA MAGING EPEKTIBONG WIKANG PANTURO ANG FILIPINO, KAILANGANG ITURO AT LINANGIN DIN ITO BILANG ASIGNATURA</li>
+                    <ul>ARGUMENTO 5: BAHAGI NG COLLEGE READINESS STANDARDS ANG FILIPINO AT PANITIKAN</li>
+                    <ul>ARGUMENTO 6: SA IBANG BANSA, MAY ESPASYO RIN SA KURIKULUM ANG SARILING WIKA BILANG ASIGNATURA, BUKOD PA SA PAGIGING WIKANG PANTURO NITO</li>
+                    <ul>ARGUMENTO 7: BINIGYAN NG DEPED AT CHED NG ESPASYO ANG MGA WIKANG DAYUHAN SA KURIKULUM, KAYA LALONG DAPAT NA MAY ESPASYO PARA SA WIKANG PAMBANSA</li>
+                    <ul>ARGUMENTO 8: PINAG-AARALAN DIN SA IBANG BANSA ANG FILIPINO – AT MAY POTENSYAL ITONG MAGING ISANG NANGUNGUNANG WIKANG GLOBAL – KAYA LALONG DAPAT ITONG PAG-ARALAN SA PILIPINAS</li>
+                    <ul>ARGUMENTO 9: MALAPIT ANG FILIPINO SA BAHASA MELAYU, BAHASA INDONESIA, AT BRUNEI MALAY, MGA WIKANG GINAGAMIT SA MALAYSIA, SINGAPORE, INDONESIA, AT BRUNEI, NA MGA BANSANG KASAPI NG ASEAN, KAYA'T MAHALAGANG WIKA ITO SA KONTEKSTO MISMO NG ASEAN INTEGRATION</li>
+                    <ul>ARGUMENTO 10: MABABA PA RIN ANG AVERAGE SCORE NG MGA ESTUDYANTE SA FILIPINO SA NATIONAL ACHIEVEMENT TEST (NAT)</li>
+                    <ul>ARGUMENTO 11: FILIPINO ANG WIKA NG MAYORYA, NG MIDYA, AT NG MGA KILUSANG PANLIPUNAN: ANG WIKA SA DEMOKRATIKO AT MAPAGPALAYANG DOMEYN NA MAHALAGA SA PAGBABAGONG PANLIPUNAN</li>
+                    <ul>ARGUMENTO 12: MULTILINGGWALISMO ANG KASANAYANG AKMA SA SIGLO 21</li>
+                    <ul>ARGUMENTO 13: HINDI PINAUNLAD, HINDI NAPAUNLAD AT HINDI MAPAPAUNLAD NG PAGSANDIG SA WIKANG DAYUHAN ANG EKONOMYA NG BANSA</li>
+                    <ul>ARGUMENTO 14: MAY SAPAT NA MATERYAL AT NILALAMAN NA MAITUTURO SA FILIPINO AT PANITIKAN SA KOLEHIYO</li>
+                </ol>
+                <h2>Panunuri sa Kahalagahan ng Wikang Filipino</h2>
+                <p>Ayon kay Bienvenido Lumbera Sa pagtanggap natin sa wika, pumapaloob tayo sa isang lipunan at nakikiisa sa mga taong naroon.<br><br>
+Ang sariling wika ay hindi nakakabawas ng katalinuhan at katangahan kung gagamitin sa iba't ibang larangan, Kung ay usapin ay karunungan.</p>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Fildis/week 2 fildis.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

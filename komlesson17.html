@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 17</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+            width: 250px;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .sidebar::before {
+                width: 100%;
+                position: absolute;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules2.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>MGA TIYAK NA SITWASYONG PANGKOMUNIKASYON NG MGA FILIPINO</h1>
+                <div class="week-badge">WEEK 17</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Ang komunikasyon sa modernong panahon ay sumasaklaw sa iba't ibang uri ng media, mula sa tradisyonal na radyo at telebisyon hanggang sa mga digital na platform tulad ng video conferencing. Ang bawat uri ay may kani-kaniyang katangian at epekto sa paraan ng pakikipagtalastasan ng mga Filipino.</p>
+                </div>
+
+                <h2>Sitwasyong Pangwika sa Telebisyon</h2>
+
+                <div class="theory-section">
+                    <p>Telebisyon, na nagsimula noong 1953 sa Pilipinas sa pamamagitan ni James Lindenberg, ay itinuturing ngayon bilang pinakamakapangyarihang midya, na may malaking impluwensiya at malawak na audience.</p>
+
+                    <h4>Mga Uri ng Programa sa Telebisyon:</h4>
+                    <ul>
+                        <li>Balita: Nagbibigay ng mga kasalukuyang pangyayari sa bansa at sa buong mundo.
+                            <br>Halimbawa: 24 Oras, TV Patrol</li>
+                        <li>Dokumentaryo: Nagsasalaysay ng mga katotohanan tungkol sa buhay at kultura ng lipunan.
+                            <br>Halimbawa: I-Witness, Reporters Notebook</li>
+                        <li>Drama at Komedya: Mga palabas na may kwento at karakter.
+                            <br>Halimbawa: Ang Probinsyano, Banana Split</li>
+                        <li>Variety Show: Palabas na may kombinasyon ng musika, komedya, at iba pa.
+                            <br>Halimbawa: Eat Bulaga, Showtime</li>
+                    </ul>
+                </div>
+
+                <h2>Sitwasyong Pangwika sa Radyo</h2>
+
+                <div class="theory-section">
+                    <p>Ang radyo ay nagsimula noong 1894, at sa Pilipinas, ang unang istasyon ay itinayo noong 1924. Mahalaga ito sa pagpapalaganap ng impormasyon at ideya sa buong bansa.</p>
+
+                    <h4>Mga Uri ng Programa sa Radyo:</h4>
+                    <ul>
+                        <li>AM (Amplitude Modulation): Naghahatid ng balita at seryosong mga paksa.
+                            <br>Halimbawa: DZBB, Veritas 846</li>
+                        <li>FM (Frequency Modulation): Para sa mga kabataan, tumutok sa musika at aliw.
+                            <br>Halimbawa: Love Radyo 90.7, Barangay LS 91.7</li>
+                    </ul>
+                </div>
+
+                <h2>Video Conferencing</h2>
+
+                <div class="theory-section">
+                    <p>Ito ay isang teknolohiya kung saan ang dalawa o higit pang tao ay makakapag-usap nang live gamit ang video at audio.</p>
+
+                    <h4>Mga Uri ng Video Conferencing:</h4>
+                    <ul>
+                        <li>Point-to-Point: Direct na pag-uusap ng dalawang tao (e.g., video call)</li>
+                        <li>Multipoint: Pag-uusap ng higit sa dalawang tao (e.g., Zoom)</li>
+                    </ul>
+
+                    <h4>Paggamit ng Video Conferencing:</h4>
+                    <ul>
+                        <li>Nagpapadali ng komunikasyon, na may 90% ng impormasyon na naipapahayag sa visual na paraan</li>
+                        <li>Mahalaga ang kahandaan, pagpaplano, at pagiging pokus sa bawat tawag</li>
+                    </ul>
+
+                    <h4>Video Call Etiquette:</h4>
+                    <ul>
+                        <li>Mga Dapat Isaalang-alang sa Paggamit ng Video Call:
+                            <ul>
+                                <li>Ayusin ang internet, kamera, at mikropono</li>
+                                <li>I-mute ang mikropono kung may kausap</li>
+                            </ul>
+                        </li>
+                        <li>Mga Dapat Isaalang-alang sa Paggawa ng Bidyo:
+                            <ul>
+                                <li>Huwag magsuot ng matitingkad na kulay</li>
+                                <li>Siguraduhing maganda ang background</li>
+                            </ul>
+                        </li>
+                        <li>Mga Dapat Isaalang-alang sa Paggawa ng Audio:
+                            <ul>
+                                <li>Gamitin ang natural na boses</li>
+                                <li>Magpakilala</li>
+                                <li>Iwasang magsalita ng sabay</li>
+                            </ul>
+                        </li>
+                        <li>Multipoint Conference:
+                            <ul>
+                                <li>Magbigay ng malinaw na impormasyon</li>
+                                <li>Alamin ang pagkakakilanlan ng kausap</li>
+                            </ul>
+                        </li>
+                        <li>Pagpapakita ng Nilalaman:
+                            <ul>
+                                <li>Siguraduhing handa ang mga dokumento o presentasyon bago magsimula ng tawag</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Komfil/week 17 komfil.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

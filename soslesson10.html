@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 10</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules1.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>PANITIKAN SA PANAHON NG AMERIKANO</h1>
+                <div class="week-badge">WEEK 10</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Ang mga Pilipinong mapanghimagsik ay nagwagi laban sa mga Kastila na sumakop sa atin nang higit sa tatlong daang taon. Naiwagayway ang ating bandila noong ika-12 ng Hunyo 1898, tanda ng pagkakaroon natin ng kalayaan.</p>
+                </div>
+
+                <h2>KALIGIRANG KASAYSAYAN SA PANAHON NG AMERIKANO</h2>
+                
+                <div class="theory-section">
+                    <p>Ang mga Pilipinong mapanghimagsik ay nagwagi laban sa mga Kastila na sumakop sa atin nang higit sa tatlong daang taon. Naiwagayway ang ating bandila noong ika-12 ng Hunyo 1898, tanda ng pagkakaroon natin ng kalayaan.</p>
+                    <p>Nahirang si Hen. Emilio Aguinaldo noon bilang unang pangulo ng Republika ng Pilipinas, subalit ang kalagayang ito'y naging panandalian lamang sapagkat biglang lumusob ang mga Amerikano.</p>
+                </div>
+
+                <h2>KALIGIRANG KASAYSAYAN SA PANAHON NG AMERIKANO</h2>
+
+                <div class="theory-section">
+                    <p>Nagkaroon ng digmaang Pilipino Amerikano na siyang naging sanhi ng pagsuko ni Hen. Miguel Malvar noong 1903. Gayun pa man, ang kilusang pangkapayapaan ay nagsimula noong pang 1900.</p>
+                    <p>Nang panahong iyon ay hindi gaanong naging mahalaga sa mga manunulat na Pilipino kung hindi pa rin sila ganap na malayang makasulat ng talagang nais nilang isulat. Katulad ng isang maliit na ibong matagal na nakulong, nang bigyan ng layuning lumipad ay nasiyahan na muna sa palipad-lipad sa labas sa labas ng hawla at hindi makapangahas lumipad sa malayo.</p>
+                </div>
+
+                <h2>MGA KATANGIAN NG PANITIKAN</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Hangaring makamit ang kalayaan</li>
+                        <li>Marubdob na pagmamahal sa bayan</li>
+                        <li>Pagtutol sa kolonyalismo</li>
+                    </ul>
+                </div>
+
+                <h2>DIWANG NANAIG SA PANAHON NG AMERIKANO</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Nasyonalismo</li>
+                        <li>Kalayaan sa pagpapahayag</li>
+                        <li>Paglawak ng karanasan</li>
+                        <li>Paghanap at paggamit ng bagong pamamaraan</li>
+                    </ul>
+                </div>
+
+                <h2>MGA IMPLUWENSYA SA PANANAKOP NG MGA AMERIKANO</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Pagpapatayo ng mga paaralan</li>
+                        <li>Binago ang sistema ng edukasyon</li>
+                        <li>Pinaunlad ang kalusugan at kalinisan</li>
+                        <li>Ipinagamit ang wikang Ingles</li>
+                        <li>Pagpapalahok sa mga Pilipino sa pamamalakad ng pamahalaan</li>
+                        <li>Kalayaan sa pagpapahayag na may</li>
+                    </ul>
+                </div>
+
+                <h2>MGA PAHAYAGAN SA PANAHON NG AMERIKANO</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>EL GRITO DEL PUEBLO (Ang Sigaw/Tinig ng Bayan) itinatag ni Pascual Poblete noong 1900</li>
+                        <li>EL NUEVO DIA (Ang Bagong Araw) itinatag ni Sergio Osmena noong 1900</li>
+                        <li>EL RENACIMIENTO (Muling Pagsilang) itinatag ni Rafael Palma noong 1900</li>
+                        <li>Manila Daily Bulletin-1900</li>
+                    </ul>
+                </div>
+
+                <h2>TATLONG PANGKAT NG MGA MANUNULAT</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Maka - Kastila</li>
+                        <li>Maka – Ingles</li>
+                        <li>Maka - Tagalog</li>
+                    </ul>
+                </div>
+
+                <h2>MGA DULANG IPINATIGIL</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Kahapon, Ngayon at Bukas – sinulat ni Aurelio Tolentino</li>
+                        <li>Tanikalang Ginto - ni Juan Abad</li>
+                        <li>Malaya – ni Tomas Remegio</li>
+                        <li>Walang Sugat – ni Severino Reyes</li>
+                    </ul>
+                </div>
+
+                <h2>PANITIKANG FILIPINO SA INGLES</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Jose Garcia Villa – "Doveglion"; pinakatanyag na Pilipinong manunulat sa Ingles</li>
+                        <li>Jorge Bacobo – sinulat-"Filipino Contact with America"; A Vision of Beauty</li>
+                        <li>Zoilo Galang – sumulat ng kauna-unahang nobelang Pilipino sa wikang Ingles na pinamagatang "A Child of Sorrow"</li>
+                        <li>Zulueta De Costa - nagkamit ng unang gantimpala sa tulang "Like the Molave"</li>
+                        <li>Nvm Gonzales - may-akda ng "My Islands" at "Children of the Ash Covered Loom". Ang huli ay isinalin sa iba't ibang wika sa India</li>
+                        <li>Angela Manalang Gloria - umakda ng "April Morning"; nakilala sa pagsulat ng mga tulang liriko noong panahon ng Komomwelt</li>
+                        <li>Estrella Alfon – ipinalalagay na pinakapangunahing manunulat na babae sa Ingles bago magkadigma. Sinulat niya ang "MAGNIFICENCE" at "GRAY CONFETTI"</li>
+                        <li>Arturo Rotor – may-akda ng "THE WOUND AND THE SCAR"- kauna-unahang aklat na nalimbag sa Philippine Book Guild</li>
+                    </ul>
+                </div>
+
+                <h2>PANAHON NG PAGHAHANGAD NG KALAYAAN</h2>
+
+                <div class="theory-section">
+                    <p>Mahahati ang panahong 1901 -1942 sa tatlo: (a) Panahon ng Paghahangad ng Kalayaan; (b) Panahon ng Romantisismo sa Panitikan (c) Panahon ng Malasariling Pamahalaan.</p>
+                    <p>Sa tanglaw ng kasaysayan ay higit ngayo'ng maliwanag ang pagsusuri sa mga naganap nang panahong iyon. Nabigyan ng kalayaan ang mga Pilipino subalit katakatakang may malaking balakid na humadlang sa pagsupling ng panitikang makabayan. Unang-una, dapat na sumibol na uri ng panitikan sa panahong iyon ay nakukulayan ng nasyonalismo: pagmamahal sa bayan, sariling kalinangan, panitikan at wika. Totoong ang dula ay ginamit ng mga manunulat upang ipahayag ang kanilang mga "paghihimagsik" tulad ng masaksihan sa Tanikalang Ginto ni Juan K. Abad at Kahapon, Ngayon at Bukas ni Aurelio Tolentino.</p>
+                    <p>Subalit dahil nga sa batas ng sedisyon at dahil sa pangangalaga ng mga Amerikano sa sarili nating kapakanan at sa katuparan ng kanilang mga makasariling layunin, naiba ang takbo ng panitikan.</p>
+                </div>
+
+                <h2>ANG ROMANTISISMO SA PANITIKAN</h2>
+
+                <div class="theory-section">
+                    <p>Naging isang mabisang kasangkapan ng mga Amerikano ang pagpapalaganap ng romantisismo sa kanilang lahatan at mabilisang pagbabago sa katutubong kamalayang Pilipino. Ito ay uring nahihimig sa Romantisismo ng Kanluran--- lubhang emosyunal, malabis ang pagkamoralistiko, sadyang sumusumang sa hindi kayayang abutin ng isipan, dumadakila sa kagandahan at kapangyarihan ng kalikasan, gumagamit ng matayog na imahinasyon o guniguni at bumabandila ng tungkol sa kalayaang sarili.</p>
+                    <p>Masasabing bagaman dinampot ng panitikang Pilipino ang romantisismong banyaga ay hindi naman lubus-lubusan. Isang katangian ng manunulat na Pilipino ang kakayahang ihalo ang 'hiniram' na katulad ng romantisismo sa pansariling elemento na angkop lamang sa kulturang Pilipino.</p>
+                    <p>Talakayin natin ang mga katangiang romantiko na napaloob sa mga pampanitikang sulatin noon.</p>
+                    <p>Unang-una, masasabing nagasgas nang husto ang paboritong paksa, ang pag-ibig. Sa tuwi-tuwina, binibihisan lamang ng iba't ibang anyo't kulay, ito'y tungkol sa pag-iibigan ng isang mahirap at isang mayaman. Ang ganitong kalakaran ng paksa ay malinaw na mababakas sa mga kuwentong lumitaw sa Mga Kuwentong Ginto: Katipunan ng Pinakamahusay na Katha Mula sa 1925- 1935. Ito'y tinipon at ipinalagay na pinakamahusay nina Clodualdo del Mundo at Alejandro Abadilla. Isa pang katangian ng panitikang romantiko ay ang pagpaksa sa katutubong buhat sa mga lalawigan, lalo na sa malalayong nayon.</p>
+                    <p>Sa isang tagalunsod na mambabasa, ito'y tila ba isang pagganyak na iwan ang buhay na iyon at lasapin ang sarap ng buhay sa piling ng mga bukiring namamango sa hinog na palay at kalabaw sa ilalim ng punong mangga: ngangasab-ngasab at kontentong- kontento. Pinalutang din ang mga tauhang kahanga-hanga, ang maiinam na mga katangian o iyong tinatawag na mga romanikong bayani. Sa ibabaw ng lahat ng ito, ang panitikang romantiko ay yaong nagbibigay ng aral batay sa mga ipinangangaral ng relihiyong Kristiyanismo. Sa tuwina'y ikinikintal sa isipan na ang masama'y pinarurusahan at ang mabuti'y tumatanggap ng karampatang gantimpala.</p>
+                </div>
+
+                <h2>MGA SAMAHAN NG MGA MANUNULAT</h2>
+
+                <div class="theory-section">
+                    <p>Mahahati ang panahong ito batay sa mga itinatag na mga samahan ng mga manunulat noon.</p>
+                    <p>Ang Aklatang Bayan (1900- 1921), at Ilaw at Panitik (1922-1934) Panahon ng Aklatang Bayan (1900- 1921)</p>
+                </div>
+
+                <h2>Ang Pasingaw at Dagli</h2>
+
+                <div class="theory-section">
+                    <p>Sang-ayon kay Lope K. Santos, ang maikling kathang Tagalog ay matutuntong na nagsupling sa anyo ng panitikang tinatawag na Pasingaw. Ito'y kadalasang tungkol sa mga dalagang hinahangaan, nililigawan, sinasamba nang lihim o pinaparunggitan dahil sa nais tawagan ng pansin ang kapintasan sa pag-uugali o sa hitsura. Kaya ang kadalasang nagsusulat nito ay mga lalaking manunulat na nagkukubli sa ilalim ng mga sagisag dahil na rin sa "kaselanan" ng mga paksang tinatalakay.</p>
+                    <p>Ang pasingaw ay naging dagli, sa tiyakang pagbibigay ng kahulugan, ang dagli ay isang maikling salaysay na nangangaral, namumuna, nagpapasaring at nanunuligsa.</p>
+                </div>
+
+                <h2>ANG TULA SA PANAHON NG AKLATANG BAYAN</h2>
+
+                <div class="theory-section">
+                    <p>Yumabong nang husto ang tula sa panahong ito ng Aklatang-Bayan. Masasabi pa ngang sa lahat ng panitikan ng panahong iyon ay sa tula nanaig nang ganap ang romantisismo</p>
+                    <p>Si Francisco Balagtas ay hindi maikakailang produkto ng kaniyang panahon. Sa kaniyang mga isinulat na hindi nasunog at sumapit sa kamay ng mga sumunod na henerasyon ay ganap na mababakas ang labis na sentimentalismo ng kaniyang panahon.</p>
+                </div>
+
+                <h2>ANG MANUNULAT NG PANAHON</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Jose Corazon de Jesus- ang "Makata ng Puso" ang siyang higit sa kaninoman ay nkamana ng korona't setro, ng pinsel at papel ni Francisco Baltazar. Hindi kailanman magiging ganap ang anumang pagsusuri ng tulang Pilipino sa kahit anong panahon kung hindi babanggitin ang pangalan ni Huseng Batute, ang "Makata ng Puso".</li>
+                        <li>Lope K. Santos ang "Makata ng Buhay" sa kaniyang mga tula, mababakas ang pagkamakata sa pamamagitan ng pagbanggit sa mga bagay-bagay sa buhay, lalong-lalo na iyong nauukol sa pangkalahatang bagay sa paligid. Dalubhasa ang panulat ni Lope K. Santos sa paglalarawan ng kahit na itinuturing na walang kuwenta at di pansing mga bagay. Hindi rin lumihis si Lope sa kalakaran ng pangangaral, Katunayan, may kalipunan siya ng mga kuwentong tula na hango sa mga katutubong salawikain</li>
+                        <li>Pedro Gatmaitan- nagpakita ng pag-unawa sa kalagayang panlipunan ng kaniyang paligid. Taong 1913 nang kanyang paksain ang tungkol sa maselan na temang nauukol sa lipunang feudal. Sumulat din siya ng mga nauukol sa pagmamahal sa bayan.</li>
+                    </ul>
+                </div>
+
+                <h2>ANG MANUNULAT NG PANAHON</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Iñigo Ed Regalado (1855- 1896 ) siya ay isa ring kuwentista, nobelista at mamahayag ngunit ang buong linamnam at tamis ng kaniyang pagkamulat ay sa kaniyang mga tula malalasap. Tinalakay niya sa kaniyang mga tula ang buhay sa daigdig, ang mga bagay-bagay sa kapaligiran at ang mga di mapapasubaliang katotohan ng buhay.</li>
+                        <li>Florentino Collantes (1896- 1951)- kapanahon ni Jose Corazon de Jesus at mahigpit niyang nakaagaw sa titulong Hari ng Balagtasan.</li>
+                        <li>Julian Cruz Balmaceda (1885- 1947) kilalang mandudula, mananalaysay, nobelista, mananaliksik wika at makata. Siya ay naging patnugot ng Surian ng Wikang Pambansa hanggang sa mamatay sa taong 1947.</li>
+                    </ul>
+                </div>
+
+                <h2>ANG DULA AT DULAAN</h2>
+
+                <div class="theory-section">
+                    <p>Salawang uri ng paghihimagsik ang ipinamals ng mga manunulat sa kanilang mga sinulat. Ang una'y paghihimagsik sa kalupitan at pagmamalabis ng mga Kastila. Ito ang uri ng pinakamakabayang hangad ng mga Amerikano. Ang labis nilang ipinagbawal sabihin pa ay ang paghihimagsik sa pamamagitan ng panulat laban sa pamahalaang Amerikano</p>
+                </div>
+
+                <h2>MGA MANUNULAT NG DULA</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Severino Reyes (1861- 1942). Taong 1902 nang simulan niyang mag-ukol ng panahon para sa pagsulat at pagpapaunlad ng dulang Tagalog. Para sa kaniya, ang moro-moro o comedia ay walang idinudulot na anomang kapakinabangan sa mga manonood kaya't pinagsikapan niyang ito'y palitan ng inaakala niyang higit na mapagkukunan ng aral at karikitan ng sambayanang manonood Mula nang pasukin niya ang makabagong uri ng dulang tagalog, ang sarsuwela, wala nang dulang nakahigit sa kaniya. Siya ang may-akda ng pamosong Walang Sugat.</li>
+                        <li>Patricio Mariano( 1877- 1935). Siya ay nakapag-ambag na sa iba't ibang larangan ng panitikang Pilipino. Siya'y kinikilala hindi lamang sa pagsusulat ng dula kundi gayon din sa pagiging isang batikang makata, mamamahayag, nobelista at tagapagsalin ng mga sulatin mula sa wikang Kastila.</li>
+                    </ul>
+                </div>
+
+                <h2>MGA MANUNULAT NG DULA</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Balagtasan- isang patulang pagtatalo o debate na higit na nakilala sa pagtangkilik ng dakilang Sinse ng Panginay na si Francisco "Balagtas" Baltazar. Ang kaunaunahang balagtasan ay ginanap sa bulwagan ng Instituto de Mujeres noong 1924, Ang mga nagtagisan ng talino ay sina Jose Corazon de Jesus at Florentino Collantes.</li>
+                        <li>Blagtasan- Balitaw - isang anyo ng dulang Cebuano na pinagsanib ang duplo at balitaw. May mga pagkakataong ang banghay ng pagliligawan sa balitaw ay nagiging sanligan ng pagtatalo sa isang paksang hindi romantiko.</li>
+                        <li>Batutian - isang mimetiko at satirikong pagtatalong patula na may kayarian ng isang dula na pinangalanan sa makatang si Jose Corazon de Jesus.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Soslit/WEEK 10 SOSLIT.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

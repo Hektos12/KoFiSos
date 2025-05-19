@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules1.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>PANITIKAN HINGGIL SA KARAPATANG PANTAO</h1>
+                <div class="week-badge">WEEK 4</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Ang mga pangangailangan ng tao ay dapat matugunan upang siya ay mabuhay. Karapatan ng tao na matugunan ang kanyang mga pangangailangan upang siya ay mabuhay nang may dignidad bilang tao.</p>
+                </div>
+
+                <h2>Kahulugan at Kahalagahan ng Karapatang Pantao</h2>
+                
+                <div class="theory-section">
+                    <p>Ang karapatang pantao ay ang mga karapatan na tinatamasa ng tao sa sandaling siya ay isilang. Ang pagkakamit ng tao ng mga pangangailangan niya tulad ng pagkain, damit, bahay, edukasyon at iba pang pangangailangan ay nangangahulugan na nakakamit niya ang kanyang karapatan.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Mga Pangunahing Konsepto</h4>
+                    <ul>
+                        <li>Hindi maaaring mabuhay ang tao kung hindi niya nakakamit ang kanyang mga karapatan.</li>
+                        <li>Mayroon tayong karapatan dahil tayo ay tao.</li>
+                        <li>Ang pagkakaroon ng karapatang pantao ay bahagi na ng pagiging tao.</li>
+                        <li>Hindi na kinakailangan pang ito ay kilalanin ng pamahalaan sa estado sapagkat likas na itong bahagi ng tao.</li>
+                    </ul>
+                </div>
+
+                <h2>Kahalagahan ng Pagkilala sa Karapatang Pantao</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Mahalagang malaman natin ang ating karapatan upang matamasa natin ang mga pangunahing pangangailangan natin bilang tao.</li>
+                        <li>Sinumang umagaw sa ating mga pangangailangan o kumitil sa ating buhay ng walang dahilan ay lumabag sa ating karapatan bilang tao.</li>
+                        <li>Maari tayong dumulog sa hukuman kung sakaling nahahadlangan ang ating karapatan.</li>
+                        <li>Ang pagkilala sa karapatang pantao ay pagkilala din sa karapatan ng iba.</li>
+                        <li>Ang pagkilala sa karapatan ng iba ay nasasaad ng ating obligasyon na igalang ang karapatan ng lahat ng tao.</li>
+                        <li>Kung lahat ng mamamayan ay kumikilala sa karapatan ng bawat isa, malaki ang posibilidad ng kapayapaan sa lahat ng aspeto ng ating buhay sa lipunang Pilipino.</li>
+                    </ul>
+                </div>
+
+                <h2>Ang Kababaihan sa Lipunang Pilipino</h2>
+
+                <div class="theory-section">
+                    <h4>Mga Katangian at Tungkulin</h4>
+                    <ul>
+                        <li>Maraming katangian ang mga kalalakihan na halos pareho din sa mga babae tulad ng pagiging agresibo, matalino, mapagbigay, masipag, malambing, at iba pa.</li>
+                        <li>May mga gawain naman ang mga lalaki na kaya rin ng babae tulad ng gawain ng abogado, doktor, mekaniko, kaminero, inhenyero, at iba pa.</li>
+                        <li>Sa mahabang panahon, tiningnan ang mga tungkulin ng babae at lalaki batay sa bayolohikal na katangian ng ating lipunan.</li>
+                    </ul>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Mga Suliranin at Hamon</h4>
+                    <ul>
+                        <li>Dahil nagkaroon ng pagkakaiba-iba ng tungkulin ng babae at lalaki, ang babae sa loob ng bahay lamang at ang lalaki sa labas ng bahay.</li>
+                        <li>Ang naging resulta ay ang kakulangan ng pagkakataon ng babae sa pagsasagawa ng mahahalagang gawain sa lipunan.</li>
+                        <li>Karamihan ng pinuno ng mga bayan ay mga lalaki.</li>
+                        <li>Ang mga namamahala ng malalaking negosyo ay ibinibigay ng pamilya o ng mga miyembro sa lalaki.</li>
+                        <li>Nawalan ang babae ng mahalagang papel sa pag-unlad ng bansa.</li>
+                        <li>Marami sa mga kababaihan ang nakaranas ng di-pantay na pagtingin na nagreresulta sa iba't ibang problema tulad ng pambubog ng asawa, karahasan sa kababaihan, pagbebenta sa mga babae, at iba pa.</li>
+                    </ul>
+                </div>
+
+                <h2>Maikling Kwento: Ang Kalupi ni Benjamin Pascual</h2>
+
+                <div class="theory-section">
+                    <h4>Buod ng Kwento</h4>
+                    <p>Si Aling Marta ay isang inang gagawin ang lahat para sa kaniyang anak. Mataas ang kaniyang pangarap. Nang araw na iyon ay nalalapit na ang pagtatapos ng kaniyang anak. Kung kaya't maaga pa lang ay nagtungo na agad siya sa palengke upang mamili.</p>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Mga Pangyayari</h4>
+                    <ul>
+                        <li>Sa kaniyang paglalakad ay nabunggo siya ng isang batang marungis.</li>
+                        <li>Nawala ang kaniyang kalupi at pinagbintangan ang bata.</li>
+                        <li>Nang makita niya ang bata, pilit niyang pinaamin ito sa pagkuha ng kaniyang pitaka.</li>
+                        <li>Ang bata ay tumakas at nabangga sa jeep.</li>
+                        <li>Nalaman ni Aling Marta na ang kaniyang asawa pala ang kumuha ng kalupi.</li>
+                    </ul>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Aral ng Kwento</h4>
+                    <p>Ang kwento ay nagpapakita ng kahalagahan ng pag-iingat sa paghusga at ang mga epekto ng maling akusasyon. Ito ay nagpapakita rin ng kahalagahan ng paggalang sa karapatan ng iba at ang mga kahihinatnan ng paglabag dito.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Soslit/Module 4 soslit.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

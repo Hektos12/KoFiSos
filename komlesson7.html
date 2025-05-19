@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 7</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules2.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>MODULE 7: TALAKAYAN, PAGBABAHAY-BAHAY, AT PULONG-BAYAN</h1>
+                <div class="week-badge">WEEK 7</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Ang talakayan ay isang sistematikong pagpapalitan ng pananaw tungkol sa isang isyu o paksa. Karaniwan, ang mga isyung tatalakayin ay mga napapanahong paksa na may kinalaman sa kasalukuyang kalagayan ng lipunan.</p>
+                </div>
+
+                <h2>Talakayan</h2>
+                
+                <div class="theory-section">
+                    <h4>Layunin ng Talakayan</h4>
+                    <ul>
+                        <li>Mapataas ang Kabatiran: Magbigay ng impormasyon sa mga kasapi ng lipunan, partikular sa mga lokal na sektor.</li>
+                        <li>Pagpapalaganap ng Impormasyon: Gamitin ang impormasyong nanggagaling sa lokal na komunidad.</li>
+                        <li>Makapagbigay ng Lugar para sa Pag-uusap: Bigyan ng pagkakataon ang mga mamamayan na magpahayag ng kanilang saloobin.</li>
+                    </ul>
+                </div>
+
+                <h2>Pagbabahay-Bahay</h2>
+
+                <div class="theory-section">
+                    <h4>Uri ng Pagbabahay-Bahay</h4>
+                    <ul>
+                        <li>Mga Nasa Relihiyon: Pagpapahayag ng mabuting balita at pagbibigay ng pagninilay.</li>
+                        <li>Oplan Tokhang: Kampanya ng mga awtoridad sa mga pinaghihinalaang gumagamit ng droga.</li>
+                        <li>Sensus: Pagkuha ng kabuuang bilang ng populasyon.</li>
+                        <li>Misyon Pangmedikal: Pagbibigay ng tulong pangkalusugan.</li>
+                        <li>Pagbebenta ng Produkto: Pag-aalok at pagbebenta ng mga produkto.</li>
+                        <li>Mga Taga-Barangay: Pagpapakalat ng mga balitang panlipunan.</li>
+                    </ul>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Mga Pangunahing Dahilan ng Pagbabahay-Bahay</h4>
+                    <ul>
+                        <li>Pagkausap ng buong pamilya</li>
+                        <li>Personal na Paghahatid ng Impormasyon</li>
+                        <li>Tuwa at Komportable na Kapaligiran</li>
+                        <li>Pag-abot sa mga tao sa loob ng bahay</li>
+                    </ul>
+                </div>
+
+                <h2>Pulong-Bayan</h2>
+
+                <div class="theory-section">
+                    <h4>Mga Dapat Tandaan sa Pulong-Bayan</h4>
+                    <ul>
+                        <li>Dinadaluhan ng mga Miyembro ng Komunidad</li>
+                        <li>Pinamumunuan ng Isang May Kapangyarihan</li>
+                        <li>May Layuning Matamo ang mga Partikular na Hakbang</li>
+                        <li>Malayang Pagsasalita at Pagsusuri ng Isyu</li>
+                    </ul>
+                </div>
+
+                <div class="theory-section">
+                    <h4>Kahalagahan ng Pulong-Bayan</h4>
+                    <p>Ang pulong-bayan ay isang mahalagang paraan upang mapanatili ang demokrasya at partisipasyon ng mga mamamayan sa mga desisyong may kinalaman sa kanilang komunidad. Ito ay nagbibigay-daan sa malayang pagpapahayag ng mga opinyon at suhestiyon.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Komfil/WEEK 7 KOMFIL.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>

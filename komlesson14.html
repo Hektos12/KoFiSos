@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 14</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('Images/school.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 242, 245, 0.9);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: fixed;
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(44, 62, 80, 0.7);
+            z-index: 0;
+        }
+
+        .sidebar > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 24px;
+            overflow-y: auto;
+            margin-left: 250px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px;
+                position: relative;
+            }
+            .main-content {
+                padding: 16px 8px;
+                margin-left: 0;
+            }
+        }
+
+        .sidebar-header {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+
+        .header {
+            background-color: #1a237e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            border-bottom: 2px solid #1a237e;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            color: #303f9f;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .week-badge {
+            background-color: #ff4081;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .theory-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a237e;
+        }
+
+        .theory-section h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .download-section {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .download-btn:hover {
+            background-color: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html"><img src="Images/logo.png" alt="Bestlink College of the Philippines" style="width: 130px; height: 150px;"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="sidebarmodules2.html"><span>Modules</span></a></li>
+                <li><a href="aboutus1.html"><span>About Us</span></a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>MGA TIYAK NA SITWASYON NG PANG-KOMUNIKASYON</h1>
+                <div class="week-badge">WEEK 14</div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="highlight-box">
+                    <p>Ang komunikasyon ay isang mahalagang aspeto ng ating araw-araw na buhay. Dahil sa paggamit ng wika, ang mga tao ay nagkakaunawaan at nakakapagbahagi ng kanilang mga ideya at damdamin. Ayon kay Dale (1969), ang komunikasyon ay may malaking gampanin sa lipunan dahil ito ay ginagamit upang magbahagi ng impormasyon, saloobin, ideya, at karanasan.</p>
+                </div>
+
+                <h2>Forum: Layunin, Pagpaplano, at Pangangasiwa</h2>
+
+                <div class="theory-section">
+                    <p>Ang forum ay isang uri ng pagtitipon kung saan ang mga ideya, opinyon, at impormasyon ay ibinabahagi. Upang maging matagumpay ang forum, nararapat na sundin ang mga hakbang sa pagpaplano at pamamahala.</p>
+
+                    <h4>Layunin ng Forum:</h4>
+                    <ul>
+                        <li>Malinaw na talakayin kung bakit isinasagawa ang forum at kung ano ang mga layunin ng pagtitipon.</li>
+                        <li>Alamin ang mga mahahalagang mensahe at datos na nais itanim sa isipan ng mga tagapakinig.</li>
+                        <li>Iplano ang oras ng forum at tiyakin na masusunod ang mga gawain sa takdang oras.</li>
+                        <li>Alamin kung sino ang magiging target na tagapakinig ng forum.</li>
+                        <li>Gumamit ng malikhaing pamamaraan sa pagpapakalat ng impormasyon (e.g., flyers, social media posts, patalastas sa radyo, atbp.).</li>
+                        <li>Siguradohing ang mga tagapakinig ay may interes sa paksa at maaaring magbigay ng kanilang pananaw.</li>
+                        <li>Piliin ang mga tagapagsalita na may sapat na kaalaman at kasanayan sa paksa.</li>
+                        <li>Maghanap ng mga research na makakatulong upang maipakilala ng maayos ang tagapagsalita sa mga tagapakinig.</li>
+                    </ul>
+                </div>
+
+                <h2>Iba Pang Pangangailangan sa Forum</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Maghanap ng angkop na lugar para sa forum. Ang lokasyon ay dapat madali mapuntahan at komportable para sa mga tagapakinig.</li>
+                        <li>Maghanda ng mga kinakailangang materyales at kagamitan, tulad ng audio-visual equipment.</li>
+                        <li>Magbigay ng feedback forms upang malaman ang mga pagkukulang at kung paano mapapabuti ang forum sa hinaharap.</li>
+                        <li>Magtala ng mga gastusin at maghanap ng mga organisasyong maaaring magbigay ng financial support.</li>
+                    </ul>
+                </div>
+
+                <h2>Lektyur (Lecture)</h2>
+
+                <div class="theory-section">
+                    <p>Ang lektyur ay isang estratehiya sa pagtuturo at pagpapahayag ng ideya na karaniwang ginagamit upang magbahagi ng teorya, kaalaman, o kuru-kuro. Batay sa The Lecture Method (2014), upang maging epektibo ang isang lektyur, ito ay kailangang hatiin sa tatlong bahagi:</p>
+
+                    <h4>Introduksyon:</h4>
+                    <p>Dito, tinataya ng tagapagsalita ang kasalukuyang kaalaman ng tagapakinig sa paksa at nag-iintroduce ng mga pangunahing ideya. Mahalaga ang paghahanda ng mga impormasyon upang ang mga tagapakinig ay maengganyo at makapag-focus sa lektyur.</p>
+
+                    <h4>Katawan o Nilalaman:</h4>
+                    <p>Ang pinakamahalagang bahagi ng lektyur, kung saan tatalakayin ang mga pangunahing paksa at impormasyon. Dapat malinaw at maayos ang pagkakalahad ng mga ideya upang madali itong maintindihan ng tagapakinig.</p>
+
+                    <h4>Konklusyon:</h4>
+                    <p>Sa bahaging ito, muling ipinapaalala at binibigyang-diin ang mga pangunahing puntos na tinalakay. Dito rin maaaring magbigay ng mga tanong o mag-encourage ng open discussion upang mapalalim pa ang pag-unawa sa mga paksa.</p>
+                </div>
+
+                <h2>Seminar</h2>
+
+                <div class="theory-section">
+                    <p>Ang seminar ay isang mas mataas na antas ng pagtuturo o pagtalakay na karaniwang isinasagawa upang magbigay ng masusing kaalaman tungkol sa isang partikular na paksa. Ayon kina C.N. Raja at T.P. Rao, ang seminar ay isang estratehiya na tinatalakay ang isang tiyak na paksa upang makabuo ng isang pinal na desisyon o konsepto.</p>
+
+                    <h4>Uri ng Seminar:</h4>
+                    <ul>
+                        <li>Mini Seminar: Karaniwang maliit ang bilang ng mga dumadalo, at tatalakayin ang mga simpleng konsepto na maaaring ituro o naituro na sa mga mag-aaral.</li>
+                        <li>Medyor-Seminar: Isinasagawa ng mga institusyon at kagawaran, at karaniwang dinadaluhan ng mga mag-aaral at guro. Ginagawa ito isang beses sa isang buwan at tumatalakay sa mga partikular na paksa na angkop sa tema ng seminar.</li>
+                        <li>National Seminar: Inorganisa ng mga asosasyon, akademya, o mga samahan ng mga propesyonal sa antas pambansa. Kadalasan, may mga dalubhasang tagapagsalita na magbabahagi ng kanilang karanasan o kaalaman.</li>
+                        <li>Internasyonal Seminar: Isinasagawa ito ng mga internasyonal na ahensya o organisasyon. Ang tema ng seminar ay maaaring sumaklaw sa globalisasyon, inobasyon, at iba pang malalaking isyu.</li>
+                    </ul>
+                </div>
+
+                <h2>Mga Komite ng Seminar</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Tagapangulo: Ang tagapangulo ay nagsisilbing lider at tagapangasiwa ng seminar. Siya ang may pananagutan sa pagdedesisyon at pamamahala ng buong seminar.</li>
+                        <li>Kalihim: Tumutulong sa tagapangulo sa mga administrative na gawain at sa pagpaplano ng mga detalye ng seminar.</li>
+                        <li>Tagapangulo sa Usaping Teknikal: Siya ang responsable sa mga teknikal na aspeto ng seminar, tulad ng audio-visual needs at iba pang kagamitan.</li>
+                        <li>Tagapagsalita: Ang mga tagapagsalita ay magbibigay ng pangunahing presentasyon at magbabahagi ng kaalaman hinggil sa paksa.</li>
+                        <li>Tagapakinig: Ang mga inaasahang dadalo sa seminar. Sila ang makikinig, matututo, at magbibigay ng kanilang pananaw sa mga tinalakay na paksa.</li>
+                    </ul>
+                </div>
+
+                <h2>Key Takeaways</h2>
+
+                <div class="theory-section">
+                    <ul>
+                        <li>Forum: Mahalaga ang tamang pagpaplano ng layunin, oras, tagapakinig, tagapagsalita, at lugar para sa isang matagumpay na forum.</li>
+                        <li>Lektyur: Ang lektyur ay isang mabisang paraan ng pagpapahayag ng ideya, at dapat ito ay maayos na istrukturado: introduksyon, katawan, at konklusyon.</li>
+                        <li>Seminar: Ang seminar ay maaaring may iba't ibang antas (mini, medyor, national, at international) depende sa lawak at layunin ng pagtitipon. Mahalaga ang pagkakaroon ng mga komite upang magsiguro ng maayos na pagganap ng seminar.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <a href="Komfil/module 14 KOMFIL.pptx" class="download-btn">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT
+        </a>
+    </div>
+</body>
+</html>
